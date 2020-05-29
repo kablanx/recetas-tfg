@@ -87,7 +87,7 @@ class FollowerController extends Controller
             }
 
             $follower=Follower::where('id',$id)->update($params_array);
-            /* var_dump($params_array);die(); */
+            
 
 
             $data = array(

@@ -179,6 +179,8 @@ class MensajeController extends Controller
     public function getMensajesUser($id){
         $mensajes=Mensaje::where('id_usuario_e', $id)
         ->orWhere('id_usuario_r', $id)->get()->load('userEnviado', 'userRecibido');
+
+
         if($mensajes){
             $data=array(
                 'code'=>200,

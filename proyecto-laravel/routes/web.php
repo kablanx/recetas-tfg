@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::get('api/recetas/inicio/{id}', 'RecetaController@getInicio');
 Route::get('api/user/buscar/{name}', 'UserController@buscar');
+Route::get('api/receta/buscar/{name}', 'RecetaController@buscar');
 // Ruta para el logueo
 Route::post('/api/login', 'UserController@login');
 

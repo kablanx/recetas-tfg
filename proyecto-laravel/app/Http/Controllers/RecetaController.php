@@ -27,7 +27,7 @@ class RecetaController extends Controller
         if ($checkToken) {
         */
             // ->load('user') muestra los datos del usuario de cada receta
-            $recetas=Receta::all()->load('user', 'comentarios', 'likes');
+            $recetas=Receta::orderByDesc('created_at')->get();
             return response()->json(array(
                 'status'=>'success',
                 'code' => 200,
@@ -42,7 +42,7 @@ class RecetaController extends Controller
     // Mostrar receta por id
     public function show($id, Request $request){
         // ->load('user') muestra los datos del usuario que ha creado la receta
-        $receta=Receta::find($id)->load('user','comentarios', 'likes');
+        $receta=Receta::find($id)->load('user','comentarios.user', 'likes');
         /* var_dump($receta);die(); */
         if(is_object($receta)){
             $data=array(
@@ -86,10 +86,9 @@ class RecetaController extends Controller
             $validate = \Validator::make($params_array, [
                 'nombre' => 'required',
                 /* 'ingredientes'=>'required',
-                'descripcion' => 'required',
-                'image1'=>'required|image|mimes:jpg,jpeg,png' */
+                'descripcion' => 'required', */
+                /* 'image1'=>'required|image|mimes:jpg,jpeg,png' */
                 /* 'image1'=>'required' */
-                /* 'video'=>'mimes:mp4 */
             ]);
 
             if($validate->fails()){
@@ -208,9 +207,9 @@ class RecetaController extends Controller
         if (!empty($params_array)) {
 
             $validate = \Validator::make($params_array, [
-                'nombre' => 'required|min:4',
-                'descripcion' => 'required',
-                'ingredientes' => 'required'
+                'nombre' => 'required',
+                /* 'descripcion' => 'required',
+                'ingredientes' => 'required' */
             ]);
 
             if ($validate->fails()) {
@@ -220,7 +219,7 @@ class RecetaController extends Controller
                     'message'=>'Error, faltan datos o la validación no es correcta.'
                 );
             }else{
-                $validate = \Validator::make($request->all(), [
+                /* $validate = \Validator::make($request->all(), [
                     'image1'=>'required|image|mimes:jpg,jpeg,png',
                     'image2'=>'image|mimes:jpg,jpeg,png',
                     'image3'=>'image|mimes:jpg,jpeg,png',
@@ -233,7 +232,7 @@ class RecetaController extends Controller
                         'status'=>'error',
                         'message'=>'Error al validar las imágenes o vídeos.'
                     );
-                }else{
+                }else{ */
                     $receta=Receta::find($id);
                     // Comprobar si hay imagenes o vídeos
                     if($image1){
@@ -285,22 +284,22 @@ class RecetaController extends Controller
                     // Obtener el registro actualizado
                     $receta=Receta::where('id', $id)->get();
 
-                    $data=array(
-                        'status'=>'success',
+                $data=array(
+                    'status'=>'success',
                         'code'=>200,
                         'changes'=>$params_array,
                         'receta'=>$receta
                     );
                 }
             }
-        } else {
+        /* } else {
             // Devolver error
             $data = array(
                 'message' => 'Error al enviar los datos',
                 'status' => 'error',
                 'code' => 400,
             );
-        }
+        } */
         return response()->json($data, $data['code']);
     }
     // Eliminar
@@ -452,6 +451,9 @@ class RecetaController extends Controller
         /* ->where('user.seguidores.id','=', 4) */;
 
         $recetas=DB::select("SELECT * FROM recetas WHERE recetas.id_usuario=$id OR recetas.id_usuario IN (SELECT followers.id_followed FROM followers WHERE followers.id_follower=$id AND followers.followed=1)" );
+
+
+
         // Le he mandado un mensaje a alfonso sobre este cacho de código
         // explicandole por qué no funciona como debería
         /* $recetas=DB::table('recetas')
@@ -470,6 +472,18 @@ class RecetaController extends Controller
             'code'=>200,
             'recetas'=>$recetas
         );
+        return response()->json($data,$data['code']);
+    }
+
+    public function buscar($name){
+        $recetas=Receta::where('nombre', 'LIKE', "%{$name}%")
+        ->orWhere('ingredientes', 'LIKE', "%{$name}%")->get();
+        $data=array(
+            'status'=>'success',
+            'recetas'=>$recetas,
+            'code'=>200
+        );
+
         return response()->json($data,$data['code']);
     }
 }

@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Receta;
 use App\Helpers\JwtAuth;
 // use App\Http\Controllers\Response;
 
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('api.auth',['except' =>[/* 'index',*/ 'show',  'login', 'store', 'getImage']]);
+        $this->middleware('api.auth',['except' =>['index', 'show',  'login', 'store', 'getImage']]);
     }
     // Crear usuario
     public function store(Request $request)
@@ -82,8 +83,8 @@ class UserController extends Controller
     }
     // Listado de usuarios
     public function index(Request $request){
-        echo("adios");
-        $users=User::all();
+
+        $users=User::orderByDesc('created_at')->get();
         return response()->json(array(
             'users'=>$users,
             'status'=>'success'
@@ -95,7 +96,13 @@ class UserController extends Controller
 
         // Obtener mensajes recibidos o enviados por el usuario
         // $user=DB::table('mensajes')->where('id_usuario_e', '=', $id)->orWhere('id_usuario_r', '=', $id)->orderBy('created_at')->get();
-        $user=User::find($id)->load('seguidores', 'seguidos', 'recetas');
+        $receta=Receta::where('id_usuario', $id)->get();
+        if(is_object($receta)){
+            $user=User::find($id)->load('seguidores', 'seguidos', 'recetas');
+        }else{
+            $user=User::find($id)->load('seguidores', 'seguidos');
+        }
+
         if(is_object($user)){
             $data=array(
                 'status'=>'success',
