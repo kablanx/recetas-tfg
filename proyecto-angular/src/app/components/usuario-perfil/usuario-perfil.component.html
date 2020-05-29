@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="col-md-7 mx-auto">
+    <div *ngIf="user">
+      <div class="container bg-light" style="height: 160px;">
+        <div class="text-center" *ngIf="user.avatar">
+          <img
+            src="http://proyectolaravel.com.devel/api/user/avatar/{{
+              user.avatar
+            }}"
+            class="avatar_usuario mt-5"
+          />
+        </div>
+      </div>
+
+      <div class="mt-2 text-center">
+        <h3>{{ user.name }} {{ user.surname }}</h3>
+        <hr />
+      </div>
+
+      <div class="row text-center">
+        <div class="col">
+          <p>
+            <b>{{ recetas.length }}</b>
+          </p>
+          <p>Publicaciones</p>
+        </div>
+        <div class="col">
+          <p>
+            <b>{{ seguidores.length }}</b>
+          </p>
+          Seguidores
+        </div>
+        <div class="col">
+          <p>
+            <b>{{ seguidos.length }}</b>
+          </p>
+          Seguidos
+        </div>
+        <div class="col" *ngIf="identity.sub!=user.id">
+          <a href="" class="btn btn-success centrar">Enviar mensaje</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" *ngIf="identity.sub != user.id">
+      <div
+        *ngIf="
+          (follower && follower.id == null) ||
+          (follower && follower.followed == 0)
+        "
+      >
+        <a (click)="seguir(user.id)" class="btn btn-success">Seguir</a>
+      </div>
+      <div *ngIf="follower && follower.id != null && follower.followed == 1">
+        <a (click)="seguir(user.id)" class="btn btn-danger">Dejar de seguir</a>
+      </div>
+    </div>
+    <div *ngIf="!recetas">
+      Cargando...
+    </div>
+    <div *ngIf="recetas">
+      <div class="bg-light mt-3" *ngFor="let receta of recetas; index as i">
+        <!-- {{ i + 1 }}/{{ recetas.length }}. -->
+        <!-- <a [routerLik]="['ver-receta', receta.id]">{{ receta.nombre }} </a> -->
+        <div class="text-center">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="identity.sub==receta.id_usuario">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown ">
+                  <a class="nav-link dropdown-toggle text-right" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-cog"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item btn" [routerLink]="['/editar-receta', receta.id]">Editar</a>
+                    <a class="dropdown-item btn" (click)="borrarReceta(receta.id)" >Borrar</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <p>
+            <b>{{ receta.nombre }}</b>
+          </p>
+          <a [routerLink]="['/mostrar-receta', receta.id]"
+            ><img
+              *ngIf="receta.image1"
+              src="http://proyectolaravel.com.devel/api/recetas/image/{{
+                receta.image1
+              }}"
+              class="avatar_editar"
+            />
+          </a>
+          <br>
+          <br>
+          <p>{{ receta.ingredientes }}</p>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

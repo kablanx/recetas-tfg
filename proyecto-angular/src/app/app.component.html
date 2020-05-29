@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary p-0">
+  <div class="container">
+    <a class="navbar-brand">FOOD-4U</a>
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav">
+        <li *ngIf="identity" class="nav-item px-2">
+          <a [routerLink]="['']" class="nav-link">Inicio</a>
+        </li>
+        <li *ngIf="identity" class="nav-item px-2">
+          <a [routerLink]="['/crear-receta']" class="nav-link">Crear Receta</a>
+        </li>
+        <li *ngIf="identity" class="nav-item px-2">
+          <a [routerLink]="['/explorar']" class="nav-link">Explorar</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown mr-3" *ngIf="identity">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <img
+              src="http://proyectolaravel.com.devel/api/user/avatar/{{identity.avatar}}"
+              class="avatar"
+            /><!-- <i class="fas fa-user"></i> -->
+          </a>
+          <!--  <img src="../../../proyecto-laravel/storage/app/users/usuario.png"> -->
+
+          <!-- <img src="http://proyectolaravel.com.devel/api/user/avatar/usuario.png"> -->
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="perfilUsuario(identity.sub)" [routerLink]="['perfil-usuario', identity.sub]">
+              <i class="fas fa-user"></i> Mi perfil
+            </a>
+            <a
+              class="dropdown-item"
+              [routerLink]="['editar-usuario', identity.sub]"
+            >
+              <i class="fas fa-cog"></i> Editar perfil
+            </a>
+            <a class="dropdown-item"
+            [routerLink]="['mensajes-bandeja', identity.sub]">
+              <i class="fas fa-mail-bulk"></i> Mensajes
+            </a>
+          </div>
+        </li>
+        <li *ngIf="identity" class="mt-3">
+          <a
+            style="cursor: pointer;"
+            [routerLink]="['logout', 1]"
+            class="nav-link"
+          >
+            <i class="fas fa-user-times"></i> Salir
+          </a>
+        </li>
+        <li *ngIf="!identity">
+          <a [routerLink]="['login']" class="nav-link">
+            <i class="fas fa-user"></i> Login
+          </a>
+        </li>
+        <li *ngIf="!identity">
+          <a [routerLink]="['registro']" class="nav-link">
+            <i class="fas fa-user"></i> Registro
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

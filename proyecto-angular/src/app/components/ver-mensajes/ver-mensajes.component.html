@@ -1,0 +1,30 @@
+<div class="col-md-4 mx-auto text-center">
+  <div *ngFor="let mensaje of mensajes">
+    <div *ngIf="mensaje.id_usuario_e == identity.sub" class="text-right bg-light">
+      {{ mensaje.texto }}
+    </div>
+    <div *ngIf="mensaje.id_usuario_e != identity.sub" class="text-left">
+      icon {{ mensaje.texto }}
+    </div>
+  </div>
+  <br>
+  <form
+    #submitMensaje="ngForm"
+    (ngSubmit)="enviarMensaje(submitMensaje)"
+  >
+    <div class="form-group text-center">
+      <p>Escribe tu mensaje:</p>
+      <textarea
+        name="mensaje"
+        #texto="ngModel"
+        [(ngModel)]="mensaje.texto"
+        id="mensaje"
+        cols="50"
+        rows="5"
+      >
+      </textarea>
+      <br />
+      <input type="submit" value="Enviar" class="btn btn-primary" />
+    </div>
+  </form>
+</div>

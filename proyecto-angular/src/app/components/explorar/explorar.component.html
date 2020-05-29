@@ -1,0 +1,84 @@
+<div class="loading" *ngIf="!users">
+  Cargando...
+</div>
+<!-- <ul class="nav nav-pills">
+  <li class="active"><a href="#">Mostrar Usuarios</a></li>
+  <li><a href="#">Mostrar Recetas</a></li>
+</ul> -->
+<div class="text-center mx-auto">
+  <a (click)="mostrarUsuarios()" class="btn btn-primary mr-1"
+    >Mostrar usuarios</a
+  >
+  <a (click)="mostrarRecetas()" class="btn btn-primary ml-1">Mostrar recetas</a>
+</div>
+<br />
+<div class="col-md-6 mx-auto my-auto" *ngIf="users && mostrarUsuario">
+  <div class="container bg-light">
+    <div>
+      <h5 class="text-center">Últimos usuarios</h5>
+      <table class="table table-hover table-stripped" id="users-list">
+          <!-- <tr class="text-center">
+            <th>
+              Usuario
+            </th>
+            <th>
+              Acciones
+            </th>
+          </tr> -->
+        <tr *ngFor="let user of users"> <!-- | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize -->
+          <td *ngIf="this.identity.sub != user.id">
+            <img
+              src="http://proyectolaravel.com.devel/api/user/avatar/{{
+                user.avatar
+              }}"
+              class="avatarExplorar"
+            />
+            {{ user.name }} {{ user.surname }}
+          </td>
+          <td *ngIf="this.identity.sub != user.id" class="text-center mx-auto">
+            <a class="btn btn-primary">Seguir</a>
+            <a
+              [routerLink]="['/perfil-usuario', user.id]"
+              class="btn btn-secondary"
+              >Ver perfil</a
+            >
+          </td>
+        </tr>
+      </table>
+      <!-- <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="users.length"
+      ></ngb-pagination> -->
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 mx-auto my-auto" *ngIf="recetas && !mostrarUsuario">
+  <div class="container bg-light">
+    <div>
+      <h5 class="text-center">Últimas recetas</h5>
+      <table class="table table-hover table-stripped" id="users-list">
+        <tr class="text-center">
+          <th>
+            Receta
+          </th>
+          <th>
+            Acciones
+          </th>
+        </tr>
+        <tr *ngFor="let receta of recetas">
+          <td>
+            <img
+              src="http://proyectolaravel.com.devel/api/recetas/image/{{
+                receta.image1
+              }}"
+              alt=""
+              class="avatarExplorar"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

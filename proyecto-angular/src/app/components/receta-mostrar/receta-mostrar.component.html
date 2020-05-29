@@ -1,0 +1,182 @@
+<div class="col-md-6 mx-auto">
+  <div class="text-center">
+    <div class="bg-light">
+      <div *ngIf="receta && receta.image1">
+        <img
+          src="http://proyectolaravel.com.devel/api/recetas/image/{{
+            receta.image1
+          }}"
+          class="avatar_usuario mt-5"
+        />
+        <h1>{{ receta.nombre }}</h1>
+        <b>Ingredientes:</b>
+        <p>{{ receta.ingredientes }}</p>
+        <div *ngIf="!mostrar">
+          <a (click)="mostrarDatos()" class="btn btn-secondary mb-2"
+            >Mostrar más</a
+          >
+        </div>
+        <div *ngIf="mostrar">
+          <a (click)="mostrarDatos()" class="btn btn-secondary mb-2">Ocultar</a>
+        </div>
+        <div *ngIf="mostrar">
+          <b>Descripcion:</b>
+          <p>{{ receta.descripcion }}</p>
+          <b>Imágenes</b>
+          <br />
+          <img
+            src="http://proyectolaravel.com.devel/api/recetas/image/{{
+              receta.image1
+            }}"
+            alt=""
+            class="image mx-2"
+          />
+
+          <img
+            *ngIf="receta.image2"
+            src="http://proyectolaravel.com.devel/api/recetas/image/{{
+              receta.image2
+            }}"
+            alt=""
+            class="image mx-2"
+          />
+          <img
+            *ngIf="receta.image3"
+            src="http://proyectolaravel.com.devel/api/recetas/image/{{
+              receta.image3
+            }}"
+            alt=""
+            class="image mx-2"
+          />
+          <br />
+          <br />
+          <b>Vídeos</b>
+          <br />
+          <video *ngIf="receta.video1" width="320" height="240" controls>
+            <source
+              src="http://proyectolaravel.com.devel/api/recetas/image/{{
+                receta.video1
+              }}"
+              type="video/mp4"
+            />
+          </video>
+          <video *ngIf="receta.video2" width="320" height="240" controls>
+            <source
+              src="http://proyectolaravel.com.devel/api/recetas/image/{{
+                receta.video2
+              }}"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <br />
+        <div>
+          {{likes}}
+        </div>
+        <br />
+      </div>
+    </div>
+    <hr />
+    <div *ngIf="(like && like.id == null) || (like && like.gustado == 0)">
+      <a (click)="darLike()" class="btn btn-primary mb-2">Like</a>
+    </div>
+    <div *ngIf="like && like.id != null && like.gustado == 1">
+      <a (click)="darLike()" class="btn btn-danger mb-2">Dislike</a>
+    </div>
+  </div>
+  <form
+    #submitComentario="ngForm"
+    (ngSubmit)="enviarComentario(submitComentario)"
+  >
+    <div class="form-group text-center">
+      <p>Deja tu opinión aquí:</p>
+      <textarea
+        name="comentario"
+        #texto="ngModel"
+        [(ngModel)]="comentario.texto"
+        id="comentario"
+        cols="50"
+        rows="5"
+      >
+      </textarea>
+      <br />
+      <input type="submit" value="Enviar" class="btn btn-primary" />
+    </div>
+  </form>
+  <div *ngIf="comentarios" >
+    <div class="row" *ngFor="let comentario of comentarios; index as i">
+      <div class="col bg-white ml-3" *ngIf="(i + 1) % 2 == 0">
+        <p>
+          <a [routerLink]="['/perfil-usuario', comentario.user.id]"
+            ><b>{{ comentario.user.name }}</b></a
+          >
+        </p>
+        <p>{{ comentario.texto }}</p>
+      </div>
+      <div class="col centrar"
+          *ngIf="
+            (identity.sub == comentario.id_usuario ||
+            identity.sub == receta.id_usuario) && (i + 1) % 2 == 0
+          "
+        >
+          <a
+            (click)="borrarComentario(comentario.id)"
+            class="btn btn-danger text-white"
+            >Borrar</a
+          >
+        </div>
+      <div class="col bg-light ml-3" *ngIf="(i + 1) % 2 != 0">
+        <p>
+          <a [routerLink]="['/perfil-usuario', comentario.user.id]"
+            ><b>{{ comentario.user.name }}</b></a
+          >
+        </p>
+        <p>{{ comentario.texto }}</p>
+
+      </div>
+      <div class="col centrar"
+          *ngIf="
+            (identity.sub == comentario.id_usuario ||
+            identity.sub == receta.id_usuario) && (i + 1) % 2 != 0
+          "
+        >
+          <a
+            (click)="borrarComentario(comentario.id)"
+            class="btn btn-danger text-white"
+            >Borrar</a
+          >
+        </div>
+      <!-- <div *ngIf="editar">
+          <form
+            #submitComentario="ngForm"
+            (ngSubmit)="enviarComentario(submitComentario)"
+          >
+            <div class="form-group">
+              <p>Deja tu opinión aquí:</p>
+              <textarea
+                name="comentario"
+                #texto="ngModel"
+                [(ngModel)]="comentario.texto"
+                id="comentario"
+                cols="30"
+                rows="10"
+              >
+              </textarea>
+              <div class="col">
+                <input
+                  type="submit"
+                  value="Enviar"
+                  class="btn btn-primary btn-block"
+                />
+                <input
+                  type="submit"
+                  value="Borrar"
+                  class="btn btn-primary btn-block"
+                />
+              </div>
+            </div>
+          </form>
+        </div>-->
+    </div>
+  </div>
+</div>

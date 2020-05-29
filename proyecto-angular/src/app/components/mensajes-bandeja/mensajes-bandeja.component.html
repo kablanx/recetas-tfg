@@ -1,0 +1,24 @@
+<div class="col-md-6 text-center">
+  <div *ngIf="mensajes && mensajes.length != 0">
+    <div *ngFor="let mensaje of mensajes">
+      <!-- {{mensaje.user_enviado.name}} -->
+      <div *ngIf="mensaje.user_enviado.id != identity.sub">
+        <a [routerLink]="['/ver-mensajes', mensaje.user_enviado.id]"
+          >{{ mensaje.user_enviado.name }}{{ mensaje.user_recibido.surname }}</a
+        >
+      </div>
+      <div *ngIf="mensaje.user_recibido.id != identity.sub">
+        <a [routerLink]="['/ver-mensajes', mensaje.user_recibido.id]"
+          >{{ mensaje.user_recibido.name }}
+          {{ mensaje.user_recibido.surname }}</a
+        >
+      </div>
+      <!-- <div *ngIf="mensaje.user_enviado && mensaje.user_enviado.id != identity.sub">
+      <a href="">{{ mensajes.user_enviado.id }}</a>
+    </div>
+    <div *ngIf="mensaje.user_recibido && mensaje.user_recibido.id != identity.sub">
+      <a href="">{{ mensajes.user_recibido.id }}</a>
+    </div> -->
+    </div>
+  </div>
+</div>

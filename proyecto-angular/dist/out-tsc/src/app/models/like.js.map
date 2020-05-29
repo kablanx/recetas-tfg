@@ -1,0 +1,1 @@
+{"version":3,"file":"like.js","sourceRoot":"","sources":["../../../../../src/app/models/like.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,IAAI;IACf,YACS,EAAU,EACV,UAAkB,EAClB,SAAiB,EACjB,OAAY,EACZ,UAAe,EACf,UAAe;QALf,OAAE,GAAF,EAAE,CAAQ;QACV,eAAU,GAAV,UAAU,CAAQ;QAClB,cAAS,GAAT,SAAS,CAAQ;QACjB,YAAO,GAAP,OAAO,CAAK;QACZ,eAAU,GAAV,UAAU,CAAK;QACf,eAAU,GAAV,UAAU,CAAK;IACrB,CAAC;CACL"}

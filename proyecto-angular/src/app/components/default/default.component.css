@@ -1,0 +1,31 @@
+.imageReceta{
+  width: 175px;
+  height: 175px;
+}
+/* unvisited link */
+a:link {
+  color: green;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: orange;
+}
+
+.row {
+  margin-left: 175px;
+}
+.centrar{
+  display: flex;
+  align-items: center;
+}

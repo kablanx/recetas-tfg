@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+.avatar_editar{
+  width: 70px;
+}
+
+.avatar_usuario{
+  width:100px;
+  border-radius: 900px;
+  overflow:hidden;
+}
+
+.blanco{
+  height: 200px;
+}
