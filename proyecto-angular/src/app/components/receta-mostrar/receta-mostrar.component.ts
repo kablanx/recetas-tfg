@@ -54,10 +54,7 @@ export class RecetaMostrarComponent implements OnInit {
           /* console.log(response);  */
           this.receta = response.receta;
           this.likes = response.likes;
-          console.log('this.likes');
-          console.log(this.likes);
           this.comentarios = response.receta.comentarios;
-          console.log(this.comentarios);
           /* this.recetas=response.user.recetas;
           console.log("this.recetas");
           console.log(this.recetas); */
@@ -72,7 +69,8 @@ export class RecetaMostrarComponent implements OnInit {
         console.log(<any>error);
       }
     );
-    this._likeService.getLike(this.identity.sub, id).subscribe(
+    this.getLike();
+    /* this._likeService.getLike(this.identity.sub, id).subscribe(
       (response) => {
         if (response.status == 'success') {
           this.like = response.dato;
@@ -83,7 +81,7 @@ export class RecetaMostrarComponent implements OnInit {
       (error) => {
         console.log(<any>error);
       }
-    );
+    ); */
   }
 
   enviarComentario(form) {
@@ -125,7 +123,7 @@ export class RecetaMostrarComponent implements OnInit {
   }
 
   getLike() {
-    this._likeService.getLike(this.identity.sub, this.receta.id).subscribe(
+    this._likeService.getLike(this.identity.sub, this._route.snapshot.paramMap.get('id')).subscribe(
       (response) => {
         if (response.status == 'success') {
           /* console.log('funciono');
@@ -178,7 +176,7 @@ export class RecetaMostrarComponent implements OnInit {
         }
       );
     }
-    
+
     /* if(!this.like){
       this.like = new Like(
         null,
@@ -207,5 +205,17 @@ export class RecetaMostrarComponent implements OnInit {
     } else {
       this.mostrar = false;
     }
+  }
+
+  borrarReceta(id){
+    this._recetaService.delete(this.token, id).subscribe(
+      response=>{
+        /* this._router.navigate(['/perfil-usuario', this.identity.sub]); */
+        this._router.navigate(['/perfil-usuario', this.identity.sub]);
+      },
+      error=>{
+        console.log(<any>error);
+      }
+    );
   }
 }

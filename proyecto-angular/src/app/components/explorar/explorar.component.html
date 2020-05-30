@@ -6,10 +6,10 @@
   <li><a href="#">Mostrar Recetas</a></li>
 </ul> -->
 <div class="text-center mx-auto">
-  <a (click)="mostrarUsuarios()" class="btn btn-primary mr-1"
+  <a (click)="mostrarUsuarios()" class="btn btn-success verde mr-1"
     >Mostrar usuarios</a
   >
-  <a (click)="mostrarRecetas()" class="btn btn-primary ml-1">Mostrar recetas</a>
+  <a (click)="mostrarRecetas()" class="btn btn-success ml-1">Mostrar recetas</a>
 </div>
 <br />
 <div class="col-md-6 mx-auto my-auto" *ngIf="users && mostrarUsuario">
@@ -31,12 +31,12 @@
               src="http://proyectolaravel.com.devel/api/user/avatar/{{
                 user.avatar
               }}"
-              class="avatarExplorar"
+              class="avatarExplorar ml-5"
             />
-            {{ user.name }} {{ user.surname }}
+            <b class="ml-5">{{ user.name }} {{ user.surname }}</b>
           </td>
           <td *ngIf="this.identity.sub != user.id" class="text-center mx-auto">
-            <a class="btn btn-primary">Seguir</a>
+            <a class="btn btn-success">Seguir</a>
             <a
               [routerLink]="['/perfil-usuario', user.id]"
               class="btn btn-secondary"
@@ -59,14 +59,14 @@
     <div>
       <h5 class="text-center">Últimas recetas</h5>
       <table class="table table-hover table-stripped" id="users-list">
-        <tr class="text-center">
+        <!-- <tr class="text-center">
           <th>
             Receta
           </th>
           <th>
             Acciones
           </th>
-        </tr>
+        </tr> -->
         <tr *ngFor="let receta of recetas">
           <td>
             <img
@@ -74,8 +74,12 @@
                 receta.image1
               }}"
               alt=""
-              class="avatarExplorar"
+              class="avatarExplorar ml-5"
             />
+            <b class="ml-5">{{ receta.nombre }}</b>
+          </td>
+          <td>
+
           </td>
         </tr>
       </table>

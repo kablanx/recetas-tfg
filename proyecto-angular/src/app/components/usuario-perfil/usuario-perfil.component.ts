@@ -103,7 +103,7 @@ export class UsuarioPerfilComponent implements OnInit {
     if(this.identity.sub==this.user.id){
       console.log("Un usuario no puede seguirse a sí mismo");
     }else{
-      if(this.follower.id==null){
+      if(this.follower.updated_at==null){
         // Asignar valores de follower
         this.follower.id_follower=this.identity.sub;
         this.follower.id_followed=this.user.id;

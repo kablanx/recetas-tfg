@@ -5,7 +5,7 @@
     Te has identificado correctamente!
  </div>
  <div class="alert alert-danger" *ngIf="status== 'error'">
-   No te has identificado! 
+   No te has identificado!
 </div>
   <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
     <p>
@@ -39,7 +39,7 @@
     <input
       type="submit"
       value="Entrar"
-      class="btn btn-primary"
+      class="btn btn-success"
       [disabled]="!loginForm.form.valid"
     />
   </form>
@@ -152,7 +152,7 @@
               <input
                 type="submit"
                 value="Entrar"
-                class="btn btn-primary btn-block"
+                class="btn btn-success btn-block"
               />
             </form>
           </div>

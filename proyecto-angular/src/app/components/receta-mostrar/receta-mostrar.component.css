@@ -30,3 +30,14 @@ a:active {
   display: flex;
   align-items: center;
 }
+
+.opcionesMensaje{
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.likes{
+  background-image: url("../../../assets/img/likes.svg");
+  background-size: 100px;
+}

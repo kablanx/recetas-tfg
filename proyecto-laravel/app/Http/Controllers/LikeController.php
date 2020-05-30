@@ -101,10 +101,15 @@ class LikeController extends Controller
                 'code'=>200
             );
         }else{
+            $like=new Like();
+            $like->id_usuario=$id_usuario;
+            $like->id_receta= $id_receta;
+            $like->gustado=0;
+            $like->save();
             $data=array(
-                'status'=>'error',
-                'message'=>'El like no existe.',
-                'code'=>404
+                'status'=>'success',
+                'dato'=>$like,
+                'code'=>200
             );
         }
         return response()->json($data, $data['code']);

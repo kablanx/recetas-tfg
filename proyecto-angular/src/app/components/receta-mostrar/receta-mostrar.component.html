@@ -2,6 +2,21 @@
   <div class="text-center">
     <div class="bg-light">
       <div *ngIf="receta && receta.image1">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="identity.sub==receta.id_usuario">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle text-right" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-cog"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item btn" [routerLink]="['/editar-receta', receta.id]">Editar</a>
+                  <a class="dropdown-item btn" (click)="borrarReceta(receta.id)" >Borrar</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
         <img
           src="http://proyectolaravel.com.devel/api/recetas/image/{{
             receta.image1
@@ -70,18 +85,18 @@
           </video>
         </div>
         <br />
-        <div>
-          {{likes}}
+        <div >
+          <h1 class="ml-3">{{likes}}<img src="../../../assets/img/likes.svg" class="opcionesMensaje ml-3" /></h1>
         </div>
         <br />
       </div>
     </div>
     <hr />
     <div *ngIf="(like && like.id == null) || (like && like.gustado == 0)">
-      <a (click)="darLike()" class="btn btn-primary mb-2">Like</a>
+      <a (click)="darLike()" class="btn btn-success mb-2"><img src="../../../assets/img/pulgar-arriba.svg" class="opcionesMensaje " /></a>
     </div>
     <div *ngIf="like && like.id != null && like.gustado == 1">
-      <a (click)="darLike()" class="btn btn-danger mb-2">Dislike</a>
+      <a (click)="darLike()" class="btn btn-danger mb-2"><img src="../../../assets/img/pulgar-hacia-abajo.svg" class="opcionesMensaje " /></a>
     </div>
   </div>
   <form
@@ -100,7 +115,7 @@
       >
       </textarea>
       <br />
-      <input type="submit" value="Enviar" class="btn btn-primary" />
+      <input type="submit" value="Enviar" class="btn btn-success" />
     </div>
   </form>
   <div *ngIf="comentarios" >
@@ -166,12 +181,12 @@
                 <input
                   type="submit"
                   value="Enviar"
-                  class="btn btn-primary btn-block"
+                  class="btn btn-success btn-block"
                 />
                 <input
                   type="submit"
                   value="Borrar"
-                  class="btn btn-primary btn-block"
+                  class="btn btn-success btn-block"
                 />
               </div>
             </div>

@@ -1,0 +1,12 @@
+.avatarMensaje {
+  width: 75px;
+  height: 75px;
+  }
+  img.avatarMensaje.align-self-center.my-1 {
+    margin-left: 28.5%;
+}
+.opcionesMensaje{
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}

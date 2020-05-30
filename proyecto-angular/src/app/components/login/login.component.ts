@@ -71,12 +71,9 @@ export class LoginComponent implements OnInit {
       if (logout == 1) {
         localStorage.removeItem('identity');
         localStorage.removeItem('token');
-
         this.identity = null;
         this.token = null;
-
-        // Redirección
-        this._router.navigate(['home']);
+        this._router.navigate(['/login']);
       }
     });
   }

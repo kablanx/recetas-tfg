@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary p-0">
+<nav class="navbar navbar-expand-sm navbar-dark verde p-0">
   <div class="container">
     <a class="navbar-brand">FOOD-4U</a>
     <button
@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav">
         <li *ngIf="identity" class="nav-item px-2">
-          <a [routerLink]="['']" class="nav-link">Inicio</a>
+          <a [routerLink]="['/inicio']" class="nav-link">Inicio</a>
         </li>
         <li *ngIf="identity" class="nav-item px-2">
           <a [routerLink]="['/crear-receta']" class="nav-link">Crear Receta</a>
@@ -33,17 +33,17 @@
 
           <!-- <img src="http://proyectolaravel.com.devel/api/user/avatar/usuario.png"> -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="perfilUsuario(identity.sub)" [routerLink]="['perfil-usuario', identity.sub]">
+            <a class="dropdown-item" (click)="perfilUsuario(identity.sub)" [routerLink]="['/perfil-usuario', identity.sub]">
               <i class="fas fa-user"></i> Mi perfil
             </a>
             <a
               class="dropdown-item"
-              [routerLink]="['editar-usuario', identity.sub]"
+              [routerLink]="['/editar-usuario', identity.sub]"
             >
               <i class="fas fa-cog"></i> Editar perfil
             </a>
             <a class="dropdown-item"
-            [routerLink]="['mensajes-bandeja', identity.sub]">
+            [routerLink]="['/mensajes-bandeja', identity.sub]">
               <i class="fas fa-mail-bulk"></i> Mensajes
             </a>
           </div>
@@ -58,12 +58,12 @@
           </a>
         </li>
         <li *ngIf="!identity">
-          <a [routerLink]="['login']" class="nav-link">
+          <a [routerLink]="['/login']" class="nav-link">
             <i class="fas fa-user"></i> Login
           </a>
         </li>
         <li *ngIf="!identity">
-          <a [routerLink]="['registro']" class="nav-link">
+          <a [routerLink]="['/registro']" class="nav-link">
             <i class="fas fa-user"></i> Registro
           </a>
         </li>

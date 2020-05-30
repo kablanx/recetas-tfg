@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Follower;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Helpers\JwtAuth;
@@ -452,6 +453,8 @@ class RecetaController extends Controller
 
         $recetas=DB::select("SELECT * FROM recetas WHERE recetas.id_usuario=$id OR recetas.id_usuario IN (SELECT followers.id_followed FROM followers WHERE followers.id_follower=$id AND followers.followed=1)" );
 
+        //$recetas=Receta::addSelect(['nombre' =>Follower::select('id_follower', 'id_followed', 'followed')
+        //->whereColumn('id_follower', 'recetas.id_usuario')])->get();
 
 
         // Le he mandado un mensaje a alfonso sobre este cacho de código
@@ -465,7 +468,7 @@ class RecetaController extends Controller
         ->distinct()
         ->get(); */
 
-
+    //var_dump($recetas);die();
         $data=array(
             'n'=>count($recetas),
             'status'=>'success',

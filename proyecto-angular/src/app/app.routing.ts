@@ -16,7 +16,7 @@ import { MensajesBandejaComponent } from './components/mensajes-bandeja/mensajes
 import { VerMensajesComponent } from './components/ver-mensajes/ver-mensajes.component';
 
 const appRoutes: Routes = [
-  { path: '', component: DefaultComponent },
+  { path: '', component: LoginComponent },
   { path: 'inicio', component: DefaultComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   { path: 'mensajes-bandeja/:id', component: MensajesBandejaComponent },
   { path: 'ver-mensajes/:id', component: VerMensajesComponent },
 
-  
+
   // Ruta no existe
   { path: '**', component: DefaultComponent },
 ];
