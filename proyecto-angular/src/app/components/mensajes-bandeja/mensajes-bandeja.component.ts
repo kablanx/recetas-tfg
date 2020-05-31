@@ -10,7 +10,7 @@ import { format } from 'path';
 @Component({
   selector: 'app-mensajes-bandeja',
   templateUrl: './mensajes-bandeja.component.html',
-  styleUrls: ['./mensajes-bandeja.component.css'],
+  styleUrls: ['./mensajes-bandeja.component.css', '../../app.component.css'],
   providers: [MensajeService],
 })
 export class MensajesBandejaComponent implements OnInit {
@@ -53,7 +53,7 @@ export class MensajesBandejaComponent implements OnInit {
           });
         });
         console.log(this.mensajes);
-        
+
       },
       (error) => {
         console.log(<any>error);

@@ -9,7 +9,7 @@ import { RecetaService } from 'src/app/services/receta.service';
 @Component({
   selector: 'app-receta-new',
   templateUrl: './receta-new.component.html',
-  styleUrls: ['./receta-new.component.css'],
+  styleUrls: ['./receta-new.component.css', '../../app.component.css'],
   providers: [UserService, RecetaService],
 })
 export class RecetaNewComponent implements OnInit {

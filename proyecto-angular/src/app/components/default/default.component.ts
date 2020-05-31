@@ -7,7 +7,7 @@ import { Receta } from 'src/app/models/receta';
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',
-  styleUrls: ['./default.component.css'],
+  styleUrls: ['./default.component.css','../../app.component.css'],
   providers: [UserService, RecetaService],
 })
 export class DefaultComponent implements OnInit {

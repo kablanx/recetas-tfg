@@ -7,7 +7,7 @@ import { GLOBAL } from '../../services/global';
 @Component({
   selector: 'app-usuario-editar',
   templateUrl: './usuario-editar.component.html',
-  styleUrls: ['./usuario-editar.component.css'],
+  styleUrls: ['./usuario-editar.component.css', '../../app.component.css'],
   providers: [UserService],
 })
 export class UsuarioEditarComponent implements OnInit {

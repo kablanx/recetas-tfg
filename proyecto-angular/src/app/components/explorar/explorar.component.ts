@@ -8,7 +8,7 @@ import { $ } from 'protractor';
 @Component({
   selector: 'app-explorar',
   templateUrl: './explorar.component.html',
-  styleUrls: ['./explorar.component.css'],
+  styleUrls: ['./explorar.component.css', '../../app.component.css'],
   providers: [UserService, RecetaService],
 })
 export class ExplorarComponent implements OnInit {

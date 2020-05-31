@@ -9,7 +9,7 @@ import { Mensaje } from 'src/app/models/mensaje';
 @Component({
   selector: 'app-ver-mensajes',
   templateUrl: './ver-mensajes.component.html',
-  styleUrls: ['./ver-mensajes.component.css'],
+  styleUrls: ['./ver-mensajes.component.css', '../../app.component.css'],
   providers: [MensajeService],
 })
 export class VerMensajesComponent implements OnInit {

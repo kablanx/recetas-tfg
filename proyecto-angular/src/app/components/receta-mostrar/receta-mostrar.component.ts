@@ -13,7 +13,7 @@ import { LikeService } from 'src/app/services/like.service';
 @Component({
   selector: 'app-receta-mostrar',
   templateUrl: './receta-mostrar.component.html',
-  styleUrls: ['./receta-mostrar.component.css'],
+  styleUrls: ['./receta-mostrar.component.css', '../../app.component.css'],
   providers: [UserService, RecetaService, ComentarioService, LikeService],
 })
 export class RecetaMostrarComponent implements OnInit {

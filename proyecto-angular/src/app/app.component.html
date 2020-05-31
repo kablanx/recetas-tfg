@@ -21,11 +21,25 @@
           <a [routerLink]="['/explorar']" class="nav-link">Explorar</a>
         </li>
       </ul>
+      <form
+      *ngIf="identity"
+        class="form-inline d-flex justify-content-center md-form form-sm active-purple active-purple-2 mt-2"
+      >
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input
+          class="form-control form-control-sm ml-3 w-75"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+        />
+      </form>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3" *ngIf="identity">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
             <img
-              src="http://proyectolaravel.com.devel/api/user/avatar/{{identity.avatar}}"
+              src="http://proyectolaravel.com.devel/api/user/avatar/{{
+                identity.avatar
+              }}"
               class="avatar"
             /><!-- <i class="fas fa-user"></i> -->
           </a>
@@ -33,7 +47,11 @@
 
           <!-- <img src="http://proyectolaravel.com.devel/api/user/avatar/usuario.png"> -->
           <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="perfilUsuario(identity.sub)" [routerLink]="['/perfil-usuario', identity.sub]">
+            <a
+              class="dropdown-item"
+              (click)="perfilUsuario(identity.sub)"
+              [routerLink]="['/perfil-usuario', identity.sub]"
+            >
               <i class="fas fa-user"></i> Mi perfil
             </a>
             <a
@@ -42,8 +60,10 @@
             >
               <i class="fas fa-cog"></i> Editar perfil
             </a>
-            <a class="dropdown-item"
-            [routerLink]="['/mensajes-bandeja', identity.sub]">
+            <a
+              class="dropdown-item"
+              [routerLink]="['/mensajes-bandeja', identity.sub]"
+            >
               <i class="fas fa-mail-bulk"></i> Mensajes
             </a>
           </div>

@@ -12,7 +12,7 @@ import { FollowerService } from 'src/app/services/follower.service';
 @Component({
   selector: 'app-usuario-perfil',
   templateUrl: './usuario-perfil.component.html',
-  styleUrls: ['./usuario-perfil.component.css'],
+  styleUrls: ['./usuario-perfil.component.css', '../../app.component.css'],
   providers: [UserService, RecetaService, FollowerService]
 })
 export class UsuarioPerfilComponent implements OnInit {

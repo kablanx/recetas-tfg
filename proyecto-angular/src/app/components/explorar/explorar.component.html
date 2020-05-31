@@ -6,10 +6,10 @@
   <li><a href="#">Mostrar Recetas</a></li>
 </ul> -->
 <div class="text-center mx-auto">
-  <a (click)="mostrarUsuarios()" class="btn btn-success verde mr-1"
+  <a (click)="mostrarUsuarios()" class="btn btn-success verde my-2 mr-1"
     >Mostrar usuarios</a
   >
-  <a (click)="mostrarRecetas()" class="btn btn-success ml-1">Mostrar recetas</a>
+  <a (click)="mostrarRecetas()" class="btn btn-success verde my-2 ml-1">Mostrar recetas</a>
 </div>
 <br />
 <div class="col-md-6 mx-auto my-auto" *ngIf="users && mostrarUsuario">
@@ -36,10 +36,10 @@
             <b class="ml-5">{{ user.name }} {{ user.surname }}</b>
           </td>
           <td *ngIf="this.identity.sub != user.id" class="text-center mx-auto">
-            <a class="btn btn-success">Seguir</a>
+            <a class="btn btn-success verde">Seguir</a>
             <a
               [routerLink]="['/perfil-usuario', user.id]"
-              class="btn btn-secondary"
+              class="btn btn-secondary ml-2"
               >Ver perfil</a
             >
           </td>
