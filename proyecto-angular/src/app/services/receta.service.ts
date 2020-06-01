@@ -63,4 +63,11 @@ export class RecetaService {
       headers: headers,
     });
   }
+
+  buscar(token, nombre):Observable<any>{
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', token);
+    return this._http.get(this.url + 'receta/buscar/'+nombre, { headers: headers });
+  }
 }

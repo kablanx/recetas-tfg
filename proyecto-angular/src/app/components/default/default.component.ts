@@ -33,6 +33,8 @@ export class DefaultComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('default.component cargado correctamente!!');
+    console.log("this.identity");
+    console.log(this.identity);
     /* console.log(this.recetas); */
   }
 

@@ -23,11 +23,19 @@ export class LoginComponent implements OnInit {
   ) {
     this.titulo = 'Login';
     this.user = new User(null, 'usuario', '', '', '', '', '', '', '','');
+    this.identity = this._userService.getIdentity();
   }
 
   ngOnInit() {
     console.log('login.component cargado correctamente!');
+    console.log(this.identity);
     this.logout();
+   /*  if(this.identity==null){
+      this.logout();
+    }else{
+      this._router.navigate(['inicio']);
+    } */
+
   }
 
   onSubmit(form) {
@@ -50,7 +58,7 @@ export class LoginComponent implements OnInit {
               this.identity = response;
               localStorage.setItem('identity', JSON.stringify(this.identity));
               // Objeto usuario identificado
-              this._router.navigate(['home']);
+              this._router.navigate(['inicio']);
             },
             (error) => {
               console.log(<any>error);

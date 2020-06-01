@@ -5,19 +5,43 @@
   <li class="active"><a href="#">Mostrar Usuarios</a></li>
   <li><a href="#">Mostrar Recetas</a></li>
 </ul> -->
-<div class="text-center mx-auto">
-  <a (click)="mostrarUsuarios()" class="btn btn-success verde my-2 mr-1"
+<div class="text-center mx-auto col-md-6">
+  <a (click)="mostrarUsuarios()" class="btn btn-secondary verde my-2 mr-1"
     >Mostrar usuarios</a
   >
-  <a (click)="mostrarRecetas()" class="btn btn-success verde my-2 ml-1">Mostrar recetas</a>
+  <a (click)="mostrarRecetas()" class="btn btn-success verde my-2 ml-1"
+    >Mostrar recetas</a
+  >
+  <form class="form-inline mr-auto text-center" #buscar="ngForm" (ngSubmit)="onSubmit(buscar)">
+    <input
+      class="form-control mr-sm-2"
+      type="text"
+      placeholder="Buscar"
+      aria-label="Search"
+      name="name"
+      #name="ngModel"
+      [(ngModel)]="user.name"
+      required
+    />
+    <button
+      class="btn btn-outline-success btn-rounded btn-sm my-0"
+      type="submit"
+    >
+      Buscar
+    </button>
+  </form>
 </div>
 <br />
+<div class="col-md-6 mx-auto my-auto">
+
+</div>
+
 <div class="col-md-6 mx-auto my-auto" *ngIf="users && mostrarUsuario">
   <div class="container bg-light">
     <div>
-      <h5 class="text-center">Últimos usuarios</h5>
+      <h5 class="text-center">{{tittle1}}</h5>
       <table class="table table-hover table-stripped" id="users-list">
-          <!-- <tr class="text-center">
+        <!-- <tr class="text-center">
             <th>
               Usuario
             </th>
@@ -25,7 +49,8 @@
               Acciones
             </th>
           </tr> -->
-        <tr *ngFor="let user of users"> <!-- | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize -->
+        <tr *ngFor="let user of users">
+          <!-- | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize -->
           <td *ngIf="this.identity.sub != user.id">
             <img
               src="http://proyectolaravel.com.devel/api/user/avatar/{{
@@ -36,10 +61,10 @@
             <b class="ml-5">{{ user.name }} {{ user.surname }}</b>
           </td>
           <td *ngIf="this.identity.sub != user.id" class="text-center mx-auto">
-            <a class="btn btn-success verde">Seguir</a>
+            <!-- <a class="btn btn-success verde">Seguir</a> -->
             <a
               [routerLink]="['/perfil-usuario', user.id]"
-              class="btn btn-secondary ml-2"
+              class="btn btn-secondary verde ml-2"
               >Ver perfil</a
             >
           </td>
@@ -57,7 +82,7 @@
 <div class="col-md-6 mx-auto my-auto" *ngIf="recetas && !mostrarUsuario">
   <div class="container bg-light">
     <div>
-      <h5 class="text-center">Últimas recetas</h5>
+      <h5 class="text-center">{{tittle2}}</h5>
       <table class="table table-hover table-stripped" id="users-list">
         <!-- <tr class="text-center">
           <th>
@@ -69,6 +94,7 @@
         </tr> -->
         <tr *ngFor="let receta of recetas">
           <td>
+            <p class="text-center ml-5"><b>{{receta.nombre}}</b></p>
             <img
               src="http://proyectolaravel.com.devel/api/recetas/image/{{
                 receta.image1
@@ -76,10 +102,15 @@
               alt=""
               class="avatarExplorar ml-5"
             />
-            <b class="ml-5">{{ receta.nombre }}</b>
+            <b class="ml-5">Ingredientes: </b> {{receta.ingredientes}}
+            <!-- <b class="ml-5">{{ receta.nombre }}</b> -->
           </td>
-          <td>
-
+          <td class="text-center mx-auto">
+            <a
+              [routerLink]="['/mostrar-receta', receta.id]"
+              class="btn btn-secondary verde ml-2"
+              >Ver receta</a
+            >
           </td>
         </tr>
       </table>

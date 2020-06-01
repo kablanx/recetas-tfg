@@ -71,7 +71,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item btn" [routerLink]="['/editar-receta', receta.id]">Editar</a>
-                    <a class="dropdown-item btn" (click)="borrarReceta(receta.id)" >Borrar</a>
+                    <a class="dropdown-item btn" (click)="borrarReceta(receta.id)" onclick="return confirm('Are you sure?')" >Borrar</a>
                   </div>
                 </li>
               </ul>

@@ -18,7 +18,7 @@
           >{{ mensaje.user_enviado.name }} {{ mensaje.user_enviado.surname }}</a
         >
         <!-- Eliminar -->
-        <a href=""
+        <a href="" (click)="borrarMensajes(mensaje.user_enviado.id)"
           ><img src="../../../assets/img/eliminar.svg" class="opcionesMensaje float-right" />
         </a>
       </div>

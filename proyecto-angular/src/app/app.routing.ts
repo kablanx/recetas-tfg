@@ -33,7 +33,7 @@ const appRoutes: Routes = [
 
 
   // Ruta no existe
-  { path: '**', component: DefaultComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 export const appRoutingProviders: any[] = [];

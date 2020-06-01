@@ -41,11 +41,13 @@ Route::post('/api/receta/uploadVideo', 'RecetaController@uploadVideo')->middlewa
 Route::get('api/user/avatar/{filename}', 'UserController@getImage');
 Route::get('api/recetas/image/{filename}', 'RecetaController@getImage');
 
-Route::get('api/mensaje/user/{id}', 'MensajeController@getMensajesUser');
-Route::get('api/mensaje/user/{id_e}/{id_r}', 'MensajeController@getMensajesToUserByUser');
+Route::get('api/mensaje/user/{id}', 'MensajeController@getMensajesUser');   // obtener bandeja de entrada
+Route::get('api/mensaje/user/{id_e}/{id_r}', 'MensajeController@getMensajesToUserByUser');  // obtener conversación
+Route::delete('api/mensaje/{id_user1}/{id_user2}', 'MensajeController@deleteMensajes'); // borrar conversación
 Route::get('api/like/{id_usuario}/{id_receta}', 'LikeController@getLike');
 Route::get('api/follower/{id_follower}/{id_followed}', 'FollowerController@getFollower');
 Route::get('api/follower/exist/{id_follower}/{id_followed}', 'FollowerController@exist');
+
 
 // Rutas automáticas
 Route::resource('/api/user', 'UserController');

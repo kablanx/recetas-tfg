@@ -60,4 +60,8 @@ export class MensajesBandejaComponent implements OnInit {
       }
     );
   }
+
+  borrarMensajes(id){
+    /* this._mensajeService. */
+  }
 }

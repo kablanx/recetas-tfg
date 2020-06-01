@@ -215,4 +215,8 @@ class MensajeController extends Controller
         }
         return response()->json($data, $data['code']);
     }
+
+    public function deleteMensajes($id_user1, $id_user2){
+
+    }
 }

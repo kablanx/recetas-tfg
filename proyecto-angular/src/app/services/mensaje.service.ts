@@ -31,4 +31,12 @@ export class MensajeService {
 
     return this._http.post(this.url + 'mensaje', params, { headers: headers });
   }
+
+  delete(token, id_user1, id_user2){
+    let headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    ).set('Authorization', token);
+    return this._http.delete(this.url + 'mensajes/'+id_user1+'/'+id_user2, { headers: headers });
+  }
 }

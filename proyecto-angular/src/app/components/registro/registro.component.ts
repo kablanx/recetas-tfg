@@ -29,7 +29,7 @@ export class RegistroComponent implements OnInit {
     /* console.log(this.user);
 
     console.log(this._userService.pruebas()); */
-
+    console.log(form);
     this._userService.register(this.user).subscribe(
       (response) => {
         if(response.status=='success'){
