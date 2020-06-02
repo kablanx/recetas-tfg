@@ -145,6 +145,7 @@ export class RecetaNewComponent implements OnInit {
         (response) => {
           console.log(response);
           form.reset();
+          this._router.navigate(['/perfil-usuario', this.receta.id_usuario]);
         },
         (error) => {
           console.log('error');

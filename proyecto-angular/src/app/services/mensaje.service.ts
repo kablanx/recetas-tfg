@@ -37,6 +37,6 @@ export class MensajeService {
       'Content-Type',
       'application/x-www-form-urlencoded'
     ).set('Authorization', token);
-    return this._http.delete(this.url + 'mensajes/'+id_user1+'/'+id_user2, { headers: headers });
+    return this._http.delete(this.url + 'mensaje/'+id_user1+'/'+id_user2, { headers: headers });
   }
 }

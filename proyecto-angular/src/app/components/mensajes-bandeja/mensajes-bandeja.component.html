@@ -4,42 +4,34 @@
     <div *ngFor="let mensaje of mensajes" class="bg-light">
       <div *ngIf="mensaje.user_enviado.id != identity.sub">
         <!-- Ver -->
-        <a [routerLink]="['/ver-mensajes', mensaje.user_recibido.id]"
-        >
+        <a [routerLink]="['/ver-mensajes', mensaje.user_recibido.id]">
           <img src="../../../assets/img/vision.svg" class="opcionesMensaje float-left" />
         </a>
         <!-- Datos -->
-        <img
-          src="http://proyectolaravel.com.devel/api/user/avatar/{{
+        <img src="http://proyectolaravel.com.devel/api/user/avatar/{{
             mensaje.user_enviado.avatar
-          }}"
-          class="avatarMensaje my-1 align-self-center"
-        /><a [routerLink]="['/ver-mensajes', mensaje.user_enviado.id]"
-          >{{ mensaje.user_enviado.name }} {{ mensaje.user_enviado.surname }}</a
-        >
+          }}" class="avatarMensaje my-1 align-self-center" /><a
+          [routerLink]="['/ver-mensajes', mensaje.user_enviado.id]">{{ mensaje.user_enviado.name }}
+          {{ mensaje.user_enviado.surname }}</a>
         <!-- Eliminar -->
-        <a href="" (click)="borrarMensajes(mensaje.user_enviado.id)"
-          ><img src="../../../assets/img/eliminar.svg" class="opcionesMensaje float-right" />
+        <a (click)="borrarMensajes(mensaje.user_enviado.id, mensaje.user_recibido.id)"><img
+            src="../../../assets/img/eliminar.svg" class="float-right borrar btn" onclick="return confirm('Are you sure?')"/>
         </a>
       </div>
       <div *ngIf="mensaje.user_recibido.id != identity.sub">
         <!-- Ver -->
-        <a [routerLink]="['/ver-mensajes', mensaje.user_recibido.id]"
-        >
+        <a [routerLink]="['/ver-mensajes', mensaje.user_recibido.id]">
           <img src="../../../assets/img/vision.svg" class="opcionesMensaje float-left" />
         </a>
         <!-- Datos -->
-        <img
-          src="http://proyectolaravel.com.devel/api/user/avatar/{{
+        <img src="http://proyectolaravel.com.devel/api/user/avatar/{{
             mensaje.user_recibido.avatar
-          }}"
-          class="avatarMensaje align-self-center my-1"
-        />{{ mensaje.user_recibido.name }}
-          {{ mensaje.user_recibido.surname }}
+          }}" class="avatarMensaje align-self-center my-1" />{{ mensaje.user_recibido.name }}
+        {{ mensaje.user_recibido.surname }}
         <!-- Eliminar -->
-        <a href=""
-          ><img src="../../../assets/img/eliminar.svg" class="opcionesMensaje float-right"
-        /></a>
+
+        <a (click)="borrarMensajes(mensaje.user_recibido.id, mensaje.user_enviado.id)" onclick="return confirm('Are you sure?')"><img
+            src="../../../assets/img/eliminar.svg" class="float-right btn borrar" /></a>
       </div>
       <p></p>
     </div>

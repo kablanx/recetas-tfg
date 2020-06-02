@@ -42,6 +42,7 @@ export class DefaultComponent implements OnInit {
     this._recetaService.getRecetasSeguidos(id).subscribe(
       response=>{
         this.recetas=response.recetas;
+        console.log(this.recetas);
       },
       error=>{
         console.log(<any>error);

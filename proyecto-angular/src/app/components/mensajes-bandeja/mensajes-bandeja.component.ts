@@ -61,7 +61,16 @@ export class MensajesBandejaComponent implements OnInit {
     );
   }
 
-  borrarMensajes(id){
-    /* this._mensajeService. */
+  borrarMensajes(id1, id2){
+    console.log("hola");
+    this._mensajeService.delete(this.token, id1, id2).subscribe(
+      response=>{
+        console.log("mensajes borrados");
+        this.getMensajesUser(this._route.snapshot.paramMap.get('id'));
+      },
+      error=>{
+        console.log(<any>error);
+      }
+    );
   }
 }

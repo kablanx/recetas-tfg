@@ -217,6 +217,21 @@ class MensajeController extends Controller
     }
 
     public function deleteMensajes($id_user1, $id_user2){
-
+        $mensajes = DB::table('mensajes')->where([
+            ['id_usuario_e', $id_user1],
+            ['id_usuario_r', $id_user2]
+        ])
+            ->orWhere([
+                ['id_usuario_e', $id_user2],
+                ['id_usuario_r', $id_user1]
+            ])
+            ->delete();
+            /* var_dump($mensajes);die(); */
+            $data = array(
+                'code'=>200,
+                'status'=>'success',
+                'mensajes'=>$mensajes
+            );
+            return response()->json($data, $data['code']);
     }
 }

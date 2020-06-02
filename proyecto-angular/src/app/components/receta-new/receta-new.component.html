@@ -24,8 +24,12 @@
           name="ingredientes"
           #nombre="ngModel"
           [(ngModel)]="receta.ingredientes"
-          class="form-control"
+          class="form-control blockTextArea"
           required
+          rows="5"
+          cols="50"
+          maxlength="250"
+
         >
         </textarea>
         <!-- <span *ngIf="!ingredientes.valid && ingredientes.touched">
@@ -38,8 +42,11 @@
           name="descripcion"
           #nombre="ngModel"
           [(ngModel)]="receta.descripcion"
-          class="form-control"
+          class="form-control blockTextArea"
           required
+          rows="5"
+          cols="50"
+          maxlength="250"
         >
         </textarea>
         <!--  <span *ngIf="!descripcion.valid && descripcion.touched">

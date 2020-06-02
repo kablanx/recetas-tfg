@@ -16,3 +16,7 @@
 .verde{
   background-color: #54B689;
 }
+
+.blockTextArea{
+  resize: none;
+}
