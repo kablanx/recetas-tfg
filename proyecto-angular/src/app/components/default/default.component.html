@@ -2,7 +2,7 @@
   <h1>{{ titulo }}</h1>
   <div *ngFor="let receta of recetas; index as i" >
     <div class="bg-light">
-      <p class="text-right mr-4 mt-2"><a [routerLink]="['/perfil-usuario', receta.id_usuario]"> Nombre usuario</a></p>
+      <p class="text-right mr-4 mt-2"><a [routerLink]="['/perfil-usuario', receta.id_usuario]">Ver perfil</a></p>
       <h4>{{ receta.nombre }}</h4>
       <a [routerLink]="['/mostrar-receta', receta.id]"><img
         src="http://proyectolaravel.com.devel/api/recetas/image/{{

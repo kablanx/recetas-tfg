@@ -54,7 +54,6 @@ export class UserService {
     } else {
       this.identity = null;
     }
-
     return this.identity;
   }
 
@@ -99,5 +98,13 @@ export class UserService {
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', token);
     return this._http.get(this.url + 'user/buscar/'+nombre, { headers: headers });
+  }
+
+  delete(token,id){
+    let headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    ).set('Authorization', token);
+    return this._http.delete(this.url + 'user/'+id, { headers: headers });
   }
 }

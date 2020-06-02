@@ -20,6 +20,9 @@
         <li *ngIf="identity" class="nav-item px-2">
           <a [routerLink]="['/explorar']" class="nav-link">Explorar</a>
         </li>
+        <li *ngIf="identity && user && user.rol=='administrador'" class="nav-item px-2">
+          <a [routerLink]="['/administracion']" class="nav-link">Administración</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3" *ngIf="identity">
@@ -37,7 +40,7 @@
           <div class="dropdown-menu">
             <a
               class="dropdown-item"
-              (click)="perfilUsuario(identity.sub)"
+
               [routerLink]="['/perfil-usuario', identity.sub]"
             >
               <i class="fas fa-user"></i> Mi perfil

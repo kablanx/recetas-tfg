@@ -13,7 +13,8 @@ export class RegistroComponent implements OnInit {
   public titulo: string;
   public user: User;
   public status: string;
-
+  public identity;
+  
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -21,6 +22,7 @@ export class RegistroComponent implements OnInit {
   ) {
     this.titulo = 'Registro';
     this.user = new User(1, 'usuario', '', '', '', '', 'usuario.png', '', '', '');
+    this.identity = this._userService.getIdentity();
   }
 
   ngOnInit(): void {}

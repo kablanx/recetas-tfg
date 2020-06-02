@@ -14,6 +14,7 @@ import { VerPerfilComponent } from './components/ver-perfil/ver-perfil.component
 import { RecetaMostrarComponent } from './components/receta-mostrar/receta-mostrar.component';
 import { MensajesBandejaComponent } from './components/mensajes-bandeja/mensajes-bandeja.component';
 import { VerMensajesComponent } from './components/ver-mensajes/ver-mensajes.component';
+import { AdministracionComponent } from './components/administracion/administracion.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'explorar', component: ExplorarComponent },
   { path: 'mensajes-bandeja/:id', component: MensajesBandejaComponent },
   { path: 'ver-mensajes/:id', component: VerMensajesComponent },
+  { path: 'administracion', component: AdministracionComponent },
 
 
   // Ruta no existe

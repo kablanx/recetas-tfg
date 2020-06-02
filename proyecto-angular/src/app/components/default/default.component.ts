@@ -28,7 +28,7 @@ export class DefaultComponent implements OnInit {
     this.titulo = 'Inicio';
     this.identity = _userService.getIdentity();
     this.token=_userService.getToken();
-    this.getRecetasSeguidos(this.identity.sub)
+    this.getRecetasSeguidos(this.identity.sub);
   }
 
   ngOnInit(): void {

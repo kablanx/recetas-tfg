@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from './models/user';
 import { RecetaService } from './services/receta.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,11 +27,13 @@ export class AppComponent implements OnInit, DoCheck {
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.getUser(this.identity.sub);
   }
   ngOnInit() {
     console.log('app.component cargado');
   }
 
+  // Comprobar token e identity cuando algo cambie
   ngDoCheck() {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
@@ -38,6 +41,19 @@ export class AppComponent implements OnInit, DoCheck {
 
   perfilUsuario(id){
     this._router.navigate(['/perfil-usuario', id]);
+  }
+
+  getUser(id){
+    this._userService.getUser(id).subscribe(
+      response=>{
+        this.user=response.user;
+        console.log("this.user");
+        console.log(this.user);
+      },
+      error=>{
+        console.log(<any>error);
+      },
+    );
   }
   /*  getImage() {
     this._userService.getImage(this.identity.avatar).subscribe(
