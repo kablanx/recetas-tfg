@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-administracion',
   templateUrl: './administracion.component.html',
-  styleUrls: ['./administracion.component.css'],
+  styleUrls: ['./administracion.component.css', '../../app.component.css'],
   providers:[UserService]
 })
 export class AdministracionComponent implements OnInit {
@@ -61,6 +61,17 @@ export class AdministracionComponent implements OnInit {
 
   public deleteUser(id){
     this._userService.delete(this.token, id).subscribe(
+      (response) => {
+        this.getUsers();
+      },
+      (error) => {
+        console.log(<any>error);
+      }
+    );
+  }
+  public updateRol(id){
+    console.log(this.token);
+    this._userService.updateRol(this.token, id).subscribe(
       (response) => {
         this.getUsers();
       },

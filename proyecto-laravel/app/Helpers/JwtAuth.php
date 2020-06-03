@@ -14,7 +14,8 @@ class JwtAuth
     public $key;
     public function __construct()
     {
-        $this->key = 'esta-es-mi-clave-secreta-23532';
+        //esta-es-mi-clave-secreta-23532
+        $this->key = 'clave-secreta-23532';
     }
 
 

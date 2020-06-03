@@ -107,4 +107,12 @@ export class UserService {
     ).set('Authorization', token);
     return this._http.delete(this.url + 'user/'+id, { headers: headers });
   }
+
+  updateRol(token, id): Observable<any>{
+    let headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    ).set('Authorization', token);
+    return this._http.put(this.url + 'user/rol/'+id, { headers: headers });
+  }
 }

@@ -15,14 +15,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="table-striped" *ngFor="let user of users">
+      <tr *ngFor="let user of users">
         <th scope="row">{{user.id}}</th>
-        <td>{{user.rol}}</td>
-        <td>{{user.name}}</td>
-        <td>{{user.surname}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.avatar}}</td>
-        <td> <a *ngIf="identity.sub!=user.id" (click)="deleteUser(user.id)" class="btn btn-danger"> Borrar</a></td>
+        <td scope="row">{{user.rol}}</td>
+        <td scope="row">{{user.name}}</td>
+        <td scope="row">{{user.surname}}</td>
+        <td scope="row">{{user.email}}</td>
+        <td scope="row">{{user.avatar}}</td>
+        <td scope="row">
+          <a *ngIf="identity.sub!=user.id" (click)="updateRol(user.id)" class="btn btn-warning">Cambiar rol</a>
+          <a *ngIf="identity.sub!=user.id" (click)="deleteUser(user.id)" class="btn btn-info ml-2">Borrar</a>
+        </td>
       </tr>
 
     </tbody>

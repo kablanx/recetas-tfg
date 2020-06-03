@@ -13,7 +13,7 @@ use App\Helpers\JwtAuth;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware('api.auth',['except' =>['index', 'show',  'login', 'store', 'getImage']]);
+        $this->middleware('api.auth',['except' =>['index', 'show',  'login', 'store', 'getImage', 'updateRol']]);
     }
     // Crear usuario
     public function store(Request $request)
@@ -376,4 +376,33 @@ class UserController extends Controller
         return response()->json($data,$data['code']);
     }
 
+    // Mejorar, autenticación.
+    public function updateRol(Request $request, $id){
+
+        // Conseguir usuario
+        $user=User::find($id);
+        if($user){
+            // Cambiar el atributo rol
+            if($user->rol=='administrador'){
+                $user->rol='usuario';
+            }else{
+                $user->rol='administrador';
+            }
+            // Actualizar
+            $user->update();
+
+            $data=array(
+                'status'=>'success',
+                'user'=>$user,
+                'code'=>200
+            );
+        }else{
+            $data=array(
+                'status'=>'error',
+                'message'=>'No existe.',
+                'code'=>400
+            );
+        }
+        return response()->json($data, $data['code']);
+    }
 }

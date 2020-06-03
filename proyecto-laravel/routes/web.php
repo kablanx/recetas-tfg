@@ -31,6 +31,8 @@ Route::post('/api/login', 'UserController@login');
 // Update, no uso ruta por defecto ya que el id se lo paso en la request en vez de en la url como parámetro
 Route::put('/api/user/update', 'UserController@update');
 
+Route::put('api/user/rol/{id}', 'UserController@updateRol');
+
 Route::post('/api/recetas/update/{id}', 'RecetaController@update');
 // Cargar avatar usuario
 Route::post('/api/user/upload', 'UserController@upload')->middleware(ApiAuthMiddleware::class);

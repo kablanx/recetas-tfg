@@ -167,19 +167,10 @@ class MensajeController extends Controller
             ])
             ->orderBy('created_at')
             ->get();
-        /* $mensajesEnviados=Mensaje::where([
-            ['id_usuario_e', $id_e],
-            ['id_usuario_r', $id_r]
-        ])->get();
-        $mensajesRecibidos=Mensaje::where([
-            ['id_usuario_e', $id_r],
-            ['id_usuario_r', $id_e]
-        ])->get(); */
         $data = array(
             'code' => 200,
             'status' => 'success',
-            'mensajes' => $mensajes/* ,
-            'mensajesRecibidos'=>$mensajesRecibidos */
+            'mensajes' => $mensajes
         );
         return response()->json($data, $data['code']);
     }
@@ -188,18 +179,6 @@ class MensajeController extends Controller
     {
         $mensajes = Mensaje::where('id_usuario_e', $id)
             ->orWhere('id_usuario_r', $id)->distinct()->get(['id_usuario_e', 'id_usuario_r'])->load('userEnviado', 'userRecibido');
-        /* $cont=0;
-            foreach($mensajes as $mensaje1){
-
-            foreach ($mensajes as $mensaje2){
-                if($mensaje1->id_usuario_r==$mensaje2->id_usuario_e && $mensaje1->id_usuario_e==$mensaje2->id_usuario_r){
-
-                    unset($mensajes[$cont]);
-                }
-            }
-            $cont++;
-        } */
-        /* var_dump(gettype($mensajes));die(); */
         if ($mensajes) {
             $data = array(
                 'code' => 200,
@@ -226,7 +205,6 @@ class MensajeController extends Controller
                 ['id_usuario_r', $id_user1]
             ])
             ->delete();
-            /* var_dump($mensajes);die(); */
             $data = array(
                 'code'=>200,
                 'status'=>'success',
