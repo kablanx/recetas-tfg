@@ -11,7 +11,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item btn" [routerLink]="['/editar-receta', receta.id]">Editar</a>
-                  <a class="dropdown-item btn" (click)="borrarReceta(receta.id)" onclick="return confirm('Are u sure?')" >Borrar</a>
+                  <a class="dropdown-item btn" (click)="borrarReceta(receta.id)">Borrar</a>
                 </div>
               </li>
             </ul>
@@ -46,7 +46,6 @@
             alt=""
             class="image mx-2"
           />
-
           <img
             *ngIf="receta.image2"
             src="http://proyectolaravel.com.devel/api/recetas/image/{{

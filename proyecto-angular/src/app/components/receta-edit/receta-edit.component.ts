@@ -24,7 +24,7 @@ export class RecetaEditComponent implements OnInit {
 
   public afuConfig = {
     multiple: false,
-    formatsAllowed: ',jpg, .png, .jpeg',
+    formatsAllowed: '.jpg, .png, .jpeg',
     maxSize: '70',
     uploadAPI: {
       url: GLOBAL.url + 'receta/upload',
@@ -49,7 +49,7 @@ export class RecetaEditComponent implements OnInit {
 
   public afuConfigImage = {
     multiple: false,
-    formatsAllowed: ',jpg, .png, .jpeg',
+    formatsAllowed: '.jpg, .png, .jpeg',
     maxSize: '70',
     uploadAPI: {
       url: GLOBAL.url + 'receta/upload',
@@ -142,8 +142,6 @@ export class RecetaEditComponent implements OnInit {
     ) {
 
       // Quitar propiedades que no se actualizan
-      delete this.receta['comentarios'];
-      delete this.receta['descripcion'];
       delete this.receta['comentarios'];
       delete this.receta['likes'];
       delete this.receta['user'];

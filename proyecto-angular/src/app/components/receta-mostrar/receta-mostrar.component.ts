@@ -46,7 +46,7 @@ export class RecetaMostrarComponent implements OnInit {
     this.comentario = new Comentario(null, this.identity.sub, null, '', '', '');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   getReceta(id) {
     this._recetaService.getReceta(id).subscribe(
       (response) => {
@@ -105,17 +105,20 @@ export class RecetaMostrarComponent implements OnInit {
     }
   }
 
-  editarComentario(form) {}
+  editarComentario(form) { }
 
   borrarComentario(id) {
-    this._comentarioService.delete(this.token, id).subscribe(
-      (response) => {
-        this.getReceta(this._route.snapshot.paramMap.get('id'));
-      },
-      (error) => {
-        console.log(<any>error);
-      }
-    );
+    let borrar = confirm("Seguro que quiere borrar la sección?");
+    if (borrar) {
+      this._comentarioService.delete(this.token, id).subscribe(
+        (response) => {
+          this.getReceta(this._route.snapshot.paramMap.get('id'));
+        },
+        (error) => {
+          console.log(<any>error);
+        }
+      );
+    }
   }
 
   editarSi(id) {
@@ -207,15 +210,18 @@ export class RecetaMostrarComponent implements OnInit {
     }
   }
 
-  borrarReceta(id){
-    this._recetaService.delete(this.token, id).subscribe(
-      response=>{
-        /* this._router.navigate(['/perfil-usuario', this.identity.sub]); */
-        this._router.navigate(['/perfil-usuario', this.identity.sub]);
-      },
-      error=>{
-        console.log(<any>error);
-      }
-    );
+  borrarReceta(id) {
+    let borrar = confirm("Seguro que quiere borrar la sección?");
+    if (borrar) {
+      this._recetaService.delete(this.token, id).subscribe(
+        response => {
+          /* this._router.navigate(['/perfil-usuario', this.identity.sub]); */
+          this._router.navigate(['/perfil-usuario', this.identity.sub]);
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    }
   }
 }

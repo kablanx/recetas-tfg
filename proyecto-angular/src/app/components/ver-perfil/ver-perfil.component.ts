@@ -1,78 +1,170 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/services/user.service';
 import { RecetaService } from 'src/app/services/receta.service';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Receta } from 'src/app/models/receta';
+import { Follower } from 'src/app/models/follower';
+import { FollowerService } from 'src/app/services/follower.service';
+
 @Component({
   selector: 'app-ver-perfil',
   templateUrl: './ver-perfil.component.html',
-  styleUrls: ['./ver-perfil.component.css'],
-  providers: [UserService, RecetaService],
+  styleUrls: ['./ver-perfil.component.css', '../../app.component.css'],
+  providers: [UserService, RecetaService, FollowerService]
 })
 
 export class VerPerfilComponent implements OnInit {
 
-  public titulo;
-  public user: User;
+  public avatar: any = '';
   public identity;
   public token;
-  public image;
+  public user = new User(0, null, null, null, null, null, null, null, null, null);
+  public follower = new Follower(null, 0, 0, 1, null, null);
+  // Datos del usuario
+  public seguidos = new Array<Follower>();
+  public seguidores = new Array<Follower>();
+  public recetas = new Array<Receta>();
+  public receta
+  public recetaImage;
 
   constructor(
+    private _userService: UserService,
+    private _recetaService: RecetaService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: UserService,
-    private _recetaService: RecetaService
+    private _followerService: FollowerService
   ) {
-    this.titulo="Ver perfil";
-
-    // Esto no se si me hace falta ya que no se si voy a usar las variables
-    this.identity=_userService.getIdentity();
-    this.token=_userService.getToken();
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    this.getUser(this._route.snapshot.paramMap.get('id'))
   }
 
   ngOnInit(): void {
-    // Cogemos la variable id de la ruta y la convertimos a entero poniendo el signo + delante
-    this._route.params.subscribe((params)=>{
-      let id= +params['id'];
-      this.getUser(id);
-    })
-
   }
 
-  getUser(id) {
+  getUser(id): any {
     this._userService.getUser(id).subscribe(
       (response) => {
         if (response.status == 'success') {
-          /* console.log(response);  */
+          this.recetas = response.user.recetas;
           this.user = response.user;
-          console.log("a");
-          console.log(this.user.email);
-          console.log("b");
+          this.seguidores = response.user.seguidores;
+          this.seguidos = response.user.seguidos;
+
+          /*  console.log(this.recetas); */
+
         } else {
-          this._router.navigate(['home']);
+          /* this._router.navigate(['home']); */
         }
       },
       (error) => {
+        console.log('error');
         console.log(<any>error);
       }
     );
-  }
-  /* getImage() {
-    this._recetaService.getImage(this.re).subscribe(
-      (response) => {
-        if (response) {
-          this.image=response;
-          console.log(this.image);
+    if (id != this.identity.sub) {
 
-          console.log(localStorage.getItem('identity'));
-        } else {
-          console.log('errorrrrrr');
+      this._followerService.existFollower(this.token, this.identity.sub, id).subscribe(
+        response => {
+
+          if (response.message == 'Existe') {
+            this._followerService.getFollower(this.token, this.identity.sub, id).subscribe(
+              response => {
+                if (response.status == 'success') {
+
+                  this.follower = response.follower;
+
+                } else {
+                  /* console.log(response.status); */
+                  /*  this._router.navigate(['home']); */
+                }
+              },
+              error => {
+                console.log('error');
+                console.log(<any>error);
+              }
+            );
+            console.log(response.message);
+          } else {
+            /* console.log('No existe'); */
+          }
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    }
+  }
+
+  seguir(id) {
+    if (this.identity.sub == this.user.id) {
+      console.log("Un usuario no puede seguirse a sí mismo");
+    } else {
+      if (this.follower.updated_at == null) {
+        // Asignar valores de follower
+        this.follower.id_follower = this.identity.sub;
+        this.follower.id_followed = this.user.id;
+        this.follower.id = 1;
+        this._followerService.create(this.token, this.follower).subscribe(
+          response => {
+            if (response.status == 'success') {
+              /* console.log('funciono el crear'); */
+              this.getUser(this.user.id);
+            }
+          },
+          error => {
+            console.log(<any>error);
+          }
+        );
+      } else {
+        // actualizar
+        /* this._router.navigate(['perfil-usuario', this.user.id]); */
+        this._followerService.update(this.token, this.follower.id, this.follower).subscribe(
+          (response) => {
+            /* console.log(this.follower); */
+            /* console.log(response);*/
+            if (response.status == 'success') {
+              /* console.log('funciono el crear'); */
+              this.getUser(this.user.id);
+            }
+          },
+          (error) => {
+            console.log(<any>error);
+          }
+        );
+      }
+    }
+  }
+
+  /* getFollower(id_follower, id_followed){
+    this._followerService.getFollower(this.token, id_follower, id_followed).subscribe(
+      response=>{
+        if(response.status=='success'){
+          this.follower=response.follower;
         }
       },
-      (error) => {
+      error=>{
+        console.log('error');
         console.log(<any>error);
       }
     );
   } */
+
+  borrarReceta(id) {
+    let borrar = confirm("Seguro que quiere borrar la sección?");
+    if (borrar) {
+      this._recetaService.delete(this.token, id).subscribe(
+        response => {
+          /* this._router.navigate(['/perfil-usuario', this.identity.sub]); */
+          this.getUser(this._route.snapshot.paramMap.get('id'));
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    }
+  }
 }

@@ -65,11 +65,11 @@ export class UsuarioPerfilComponent implements OnInit {
     );
     if(id!=this.identity.sub){
 
-      this._followerService.existFollower(this.identity.sub, id).subscribe(
+      this._followerService.existFollower(this.token, this.identity.sub, id).subscribe(
         response=>{
 
           if(response.message=='Existe'){
-            this._followerService.getFollower(this.identity.sub, id).subscribe(
+            this._followerService.getFollower(this.token, this.identity.sub, id).subscribe(
               response=>{
                 if(response.status=='success'){
 
@@ -94,9 +94,7 @@ export class UsuarioPerfilComponent implements OnInit {
           console.log(<any>error);
         }
       );
-
     }
-
   }
 
   seguir(id){
@@ -139,15 +137,11 @@ export class UsuarioPerfilComponent implements OnInit {
     }
   }
 
-  getFollower(id_follower, id_followed){
-    this._followerService.getFollower(id_follower, id_followed).subscribe(
+  /* getFollower(id_follower, id_followed){
+    this._followerService.getFollower(this.token, id_follower, id_followed).subscribe(
       response=>{
         if(response.status=='success'){
           this.follower=response.follower;
-        }else {
-/*           console.log(response.status); */
-          /* this._router.navigate(['home']); */
-          /* this.getUser(this._route.snapshot.paramMap.get('id')); */
         }
       },
       error=>{
@@ -155,18 +149,22 @@ export class UsuarioPerfilComponent implements OnInit {
         console.log(<any>error);
       }
     );
-  }
+  } */
 
   borrarReceta(id){
-    this._recetaService.delete(this.token, id).subscribe(
-      response=>{
-        /* this._router.navigate(['/perfil-usuario', this.identity.sub]); */
-        this.getUser(this._route.snapshot.paramMap.get('id'));
-      },
-      error=>{
-        console.log(<any>error);
-      }
-    );
+    let borrar = confirm("Seguro que quiere borrar la sección?");
+    if(borrar){
+      this._recetaService.delete(this.token, id).subscribe(
+        response=>{
+          /* this._router.navigate(['/perfil-usuario', this.identity.sub]); */
+          this.getUser(this._route.snapshot.paramMap.get('id'));
+        },
+        error=>{
+          console.log(<any>error);
+        }
+      );
+    }
+
   }
 
 

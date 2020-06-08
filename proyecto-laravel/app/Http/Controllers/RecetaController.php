@@ -347,7 +347,7 @@ class RecetaController extends Controller
         return response()->json($data,$data['code']);
     }
 
-    // Mostrar imagen
+    // Mostrar imagen o video
     public function getImage($filename){
         $isset=\Storage::disk('recetas')->exists($filename);
         if($isset){

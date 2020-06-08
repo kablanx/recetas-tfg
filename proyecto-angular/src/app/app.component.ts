@@ -5,7 +5,6 @@ import { User } from './models/user';
 import { RecetaService } from './services/receta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,7 +26,10 @@ export class AppComponent implements OnInit, DoCheck {
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.getUser(this.identity.sub);
+    if(this.identity){
+      this.getUser(this.identity.sub);
+    }
+
   }
   ngOnInit() {
     console.log('app.component cargado');

@@ -25,7 +25,7 @@ export class RecetaNewComponent implements OnInit {
 
   public afuConfig = {
     multiple: false,
-    formatsAllowed: ',jpg, .png, .jpeg',
+    formatsAllowed: '.png, .jpg',
     maxSize: '50',
     uploadAPI: {
       url: GLOBAL.url + 'receta/upload',
@@ -50,7 +50,7 @@ export class RecetaNewComponent implements OnInit {
 
   public afuConfigImage = {
     multiple: false,
-    formatsAllowed: ',jpg, .png, .jpeg',
+    formatsAllowed: '.jpg, .png, .jpeg',
     maxSize: '50',
     uploadAPI: {
       url: GLOBAL.url + 'receta/upload',

@@ -60,6 +60,8 @@ export class AdministracionComponent implements OnInit {
   }
 
   public deleteUser(id){
+    let borrar = confirm("Seguro que quiere borrar la sección?");
+    if(borrar){
     this._userService.delete(this.token, id).subscribe(
       (response) => {
         this.getUsers();
@@ -68,6 +70,7 @@ export class AdministracionComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
   }
   public updateRol(id){
     console.log(this.token);
@@ -79,5 +82,24 @@ export class AdministracionComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+  deleteSection(id){
+    let borrar = confirm("Seguro que quiere borrar la sección?");
+    if(borrar){
+      this._userService.delete(this.token,id).subscribe(
+        response => {
+
+
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+      this._router.navigate['/mis-cursos'];
+    }
+    else{
+
+    }
+
   }
 }

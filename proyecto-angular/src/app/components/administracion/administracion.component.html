@@ -24,7 +24,7 @@
         <td scope="row">{{user.avatar}}</td>
         <td scope="row">
           <a *ngIf="identity.sub!=user.id" (click)="updateRol(user.id)" class="btn btn-warning">Cambiar rol</a>
-          <a *ngIf="identity.sub!=user.id" (click)="deleteUser(user.id)" class="btn btn-info ml-2">Borrar</a>
+          <a *ngIf="identity.sub!=user.id" (click)="deleteUser(user.id)" class="btn btn-info ml-2" >Borrar</a>
         </td>
       </tr>
 
