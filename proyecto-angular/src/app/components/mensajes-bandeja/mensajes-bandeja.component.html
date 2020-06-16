@@ -1,7 +1,7 @@
 <div class="col-md-5 mx-auto">
   <h2>Bandeja de entrada</h2>
   <div *ngIf="mensajes && mensajes.length != 0">
-    <div *ngFor="let mensaje of mensajes" class="bg-light">
+    <div *ngFor="let mensaje of mensajes | paginate: {itemsPerPage: 5, currentPage: p, totalItems: mensajes.length}" class="bg-light">
       <div *ngIf="mensaje.user_enviado.id != identity.sub">
         <!-- Ver -->
         <a [routerLink]="['/ver-mensajes', mensaje.user_recibido.id]">
@@ -35,5 +35,6 @@
       </div>
       <p></p>
     </div>
+    <pagination-controls (pageChange)="p = ($event)" class="text-center"></pagination-controls>
   </div>
 </div>

@@ -9,6 +9,7 @@ import { RecetaService } from 'src/app/services/receta.service';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { Like } from 'src/app/models/like';
 import { LikeService } from 'src/app/services/like.service';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-receta-mostrar',
@@ -23,7 +24,7 @@ export class RecetaMostrarComponent implements OnInit {
   public receta: Receta;
   public comentario: Comentario;
   public mostrar = false;
-
+  public p=1;
   public like = new Like(null, 1, 1, 0, null, null);
   public likes;
   public comentarios;

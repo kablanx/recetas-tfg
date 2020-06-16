@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { RecetaService } from 'src/app/services/receta.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { $ } from 'protractor';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-explorar',
@@ -22,7 +23,7 @@ export class ExplorarComponent implements OnInit {
   public mostrarUsuario = true;
   public tittle1;
   public tittle2;
-
+  public p=1;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,

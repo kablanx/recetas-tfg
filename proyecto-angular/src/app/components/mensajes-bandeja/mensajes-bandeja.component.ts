@@ -6,6 +6,7 @@ import { GLOBAL } from 'src/app/services/global';
 import { MensajeService } from 'src/app/services/mensaje.service';
 import { Mensaje } from 'src/app/models/mensaje';
 import { format } from 'path';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-mensajes-bandeja',
@@ -17,7 +18,7 @@ export class MensajesBandejaComponent implements OnInit {
   public titulo;
   public identity;
   public token;
-
+  public p=1;
   public mensajes;
 
   constructor(

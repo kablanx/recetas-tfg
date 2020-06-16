@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Receta } from 'src/app/models/receta';
 import { Follower } from 'src/app/models/follower';
 import { FollowerService } from 'src/app/services/follower.service';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-ver-perfil',
@@ -18,6 +19,7 @@ import { FollowerService } from 'src/app/services/follower.service';
 
 export class VerPerfilComponent implements OnInit {
 
+  public p=1;
   public avatar: any = '';
   public identity;
   public token;

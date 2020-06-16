@@ -1,18 +1,16 @@
-<div class="col-md-6 mx-auto text-center">
+<div *ngIf="recetas" class="col-md-6 mx-auto text-center">
   <h1>{{ titulo }}</h1>
-  <div *ngFor="let receta of recetas; index as i" >
+  <div *ngFor="let receta of recetas | paginate: {itemsPerPage: 2, currentPage: p, totalItems: recetas.length}">
     <div class="bg-light">
       <p class="text-right mr-4 mt-2"><a [routerLink]="['/perfil-usuario', receta.id_usuario]">Ver perfil</a></p>
       <h4>{{ receta.nombre }}</h4>
-      <a [routerLink]="['/mostrar-receta', receta.id]"><img
-        src="http://proyectolaravel.com.devel/api/recetas/image/{{
+      <a [routerLink]="['/mostrar-receta', receta.id]"><img src="http://proyectolaravel.com.devel/api/recetas/image/{{
           receta.image1
-        }}"
-        class="imageReceta"
-      />
-    </a>
+        }}" class="imageReceta" />
+      </a>
     </div>
     <br><br>
 
   </div>
+  <pagination-controls (pageChange)="p = ($event)"> </pagination-controls>
 </div>

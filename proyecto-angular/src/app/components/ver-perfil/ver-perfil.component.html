@@ -58,7 +58,7 @@
       Cargando...
     </div>
     <div *ngIf="recetas">
-      <div class="bg-light mt-3" *ngFor="let receta of recetas; index as i">
+      <div class="bg-light mt-3" *ngFor="let receta of recetas| paginate: {itemsPerPage: 2, currentPage: p, totalItems: recetas.length}">
         <!-- {{ i + 1 }}/{{ recetas.length }}. -->
         <!-- <a [routerLik]="['ver-receta', receta.id]">{{ receta.nombre }} </a> -->
         <div class="text-center">
@@ -95,6 +95,7 @@
           <br>
         </div>
       </div>
+      <pagination-controls (pageChange)="p = ($event)" class="text-center"> </pagination-controls>
     </div>
   </div>
 </div>

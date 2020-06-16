@@ -165,7 +165,7 @@ class MensajeController extends Controller
                 ['id_usuario_e', $id_r],
                 ['id_usuario_r', $id_e]
             ])
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->get();
         $data = array(
             'code' => 200,

@@ -21,7 +21,7 @@ import { RecetaMostrarComponent } from './components/receta-mostrar/receta-mostr
 import { MensajesBandejaComponent } from './components/mensajes-bandeja/mensajes-bandeja.component';
 import { VerMensajesComponent } from './components/ver-mensajes/ver-mensajes.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -48,7 +48,8 @@ import { AdministracionComponent } from './components/administracion/administrac
     routing,
     FormsModule,
     HttpClientModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    NgxPaginationModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent],

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Receta } from 'src/app/models/receta';
 import { Follower } from 'src/app/models/follower';
 import { FollowerService } from 'src/app/services/follower.service';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -16,6 +17,7 @@ import { FollowerService } from 'src/app/services/follower.service';
   providers: [UserService, RecetaService, FollowerService]
 })
 export class UsuarioPerfilComponent implements OnInit {
+  public p=1;
   public avatar: any = '';
   public identity;
   public token;

@@ -21,7 +21,7 @@
           src="http://proyectolaravel.com.devel/api/recetas/image/{{
             receta.image1
           }}"
-          class="avatar_usuario mt-5"
+          class="avatar_usuario"
         />
         <h1>{{ receta.nombre }}</h1>
         <b>Ingredientes:</b>
@@ -120,7 +120,7 @@
     </div>
   </form>
   <div *ngIf="comentarios" >
-    <div class="row" *ngFor="let comentario of comentarios; index as i">
+    <div class="row" *ngFor="let comentario of comentarios | paginate: {itemsPerPage: 5, currentPage: p, totalItems: comentarios.length}; let i=index">
       <div class="col bg-white ml-3" *ngIf="(i + 1) % 2 == 0">
         <p>
           <a [routerLink]="['/perfil-usuario', comentario.user.id]"
@@ -193,6 +193,8 @@
             </div>
           </form>
         </div>-->
+
     </div>
+    <pagination-controls (pageChange)="p = ($event)" class="text-center"> </pagination-controls>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { GLOBAL } from 'src/app/services/global';
 import { MensajeService } from 'src/app/services/mensaje.service';
 import { Mensaje } from 'src/app/models/mensaje';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-ver-mensajes',
@@ -16,7 +17,8 @@ export class VerMensajesComponent implements OnInit {
   public titulo;
   public identity;
   public token;
-
+  public p=1;
+  
   public mensajes;
   public mensaje: Mensaje;
   public comentario;
