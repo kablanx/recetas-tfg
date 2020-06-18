@@ -17,7 +17,7 @@ import { VerMensajesComponent } from './components/ver-mensajes/ver-mensajes.com
 import { AdministracionComponent } from './components/administracion/administracion.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: DefaultComponent },
   { path: 'inicio', component: DefaultComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },

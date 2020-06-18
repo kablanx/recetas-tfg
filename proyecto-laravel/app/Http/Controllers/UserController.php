@@ -30,8 +30,8 @@ class UserController extends Controller
             $params_array=array_map('trim', $params_array);
 
             $validate=\Validator::make($params_array, [
-                'name'=>'required|alpha|min:1|max:20',
-                'surname'=>'required|alpha|min:1|max:20',
+                'name'=>'required|min:1|max:20',
+                'surname'=>'required|min:1|max:20',
                 'password'=>'required|min:8|max:15',
                 'email'=>'required|email|unique:users'
             ]);
@@ -261,8 +261,8 @@ class UserController extends Controller
 
             // Validar datos
             $validate=\Validator::make($params_array, [
-                'name'=>'required|alpha|min:1|max:20',
-                'surname'=>'required|alpha|min:1|max:20',
+                'name'=>'required|min:1|max:20',
+                'surname'=>'required|min:1|max:20',
                 'password'=>'required|min:8|max:15',
                 'email'=>'required|email|unique:users,email, '.$user->sub
 
@@ -294,7 +294,8 @@ class UserController extends Controller
                         $params_array['avatar']=$image_name;
                     } */
                     // Quitamos los campos que no queremos actualizar
-                    unset($params_array['id']);
+
+
                     unset($params_array['rol']);
                     unset($params_array['created_at']);
                     unset($params_array['remember_token']);
@@ -306,7 +307,7 @@ class UserController extends Controller
 
 
                     // Actualizar usuario en la bbdd
-                    $user_update=User::where('id', 11)->update($params_array);
+                    $user_update=User::where('id', $params_array['id'])->update($params_array);
 
 
                     // Devolver array con el resultado

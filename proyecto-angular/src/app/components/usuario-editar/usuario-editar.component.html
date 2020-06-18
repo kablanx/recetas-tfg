@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="alert alert-success" *ngIf="status == 'success'">
-        Ha editado sus datos correctamente,
-        <a [routerLink]="['/perfil-usuario/', identity.sub]"> compruébalo!</a>
+
+        <a [routerLink]="['/perfil-usuario/', identity.sub]">Vaya a su perfil para comprobar los cambios.</a>
       </div>
       <div class="alert alert-danger" *ngIf="status == 'error'">
         Ha habido un error a la hora editar su perfil, vuelva a intentarlo.

@@ -87,6 +87,7 @@
                 <div class="form-group">
                   <label for="name">Nombre</label>
                   <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user.name" required
+                    pattern="[a-zA-ZÀ-ÿ\s\u00f1\u00d1]+(\s[a-zA-ZÀ-ÿ\u00f1\u00d1])*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
                     minlength="1" />
                   <span *ngIf="!name.valid && name.touched">
                     El campo Nombre es obligatorio
@@ -95,7 +96,8 @@
                 <div class="form-group">
                   <label for="surname">Apellidos</label>
                   <input type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="user.surname"
-                    required minlength="1" />
+                    pattern="[a-zA-ZÀ-ÿ\s\u00f1\u00d1]+(\s[a-zA-ZÀ-ÿ\u00f1\u00d1])*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" required
+                    minlength="1"/>
                   <span *ngIf="!surname.valid && surname.touched">
                     El campo Apellidos es obligatorio
                   </span>

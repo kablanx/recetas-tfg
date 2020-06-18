@@ -29,13 +29,19 @@ export class DefaultComponent implements OnInit {
     this.titulo = 'Inicio';
     this.identity = _userService.getIdentity();
     this.token=_userService.getToken();
-    this.getRecetasSeguidos(this.identity.sub);
+    if(this.identity){
+      this.getRecetasSeguidos(this.identity.sub);
+    }
+
   }
 
   ngOnInit(): void {
     console.log('default.component cargado correctamente!!');
     console.log("this.identity");
     console.log(this.identity);
+    if(!this.identity || this.identity==null){
+      this._router.navigate(['login']);
+    }
     /* console.log(this.recetas); */
   }
 
