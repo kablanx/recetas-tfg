@@ -5,7 +5,7 @@
       {{ mensaje.texto }}
     </div>
     <div *ngIf="mensaje.id_usuario_e != identity.sub" class="text-left">
-      icon {{ mensaje.texto }}
+      {{ mensaje.texto }}
     </div>
   </div>
   <pagination-controls (pageChange)="p = ($event)"> </pagination-controls>

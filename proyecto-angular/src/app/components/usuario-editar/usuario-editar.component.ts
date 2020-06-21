@@ -140,7 +140,7 @@ export class UsuarioEditarComponent implements OnInit {
           if (response.changes.email) {
             this.identity.email = response.changes.email;
           }
-          if (response.changes.image) {
+          if (response.changes.avatar) {
             /* console.log(response.changes.image) */
             this.identity.avatar = response.changes.avatar;
           }
@@ -167,6 +167,6 @@ export class UsuarioEditarComponent implements OnInit {
   avatarUpload(datos) {
     console.log(datos);
     let data = JSON.parse(datos.response);
-    this.identity.avatar = data.image;
+    this.user.avatar = data.image;
   }
 }
