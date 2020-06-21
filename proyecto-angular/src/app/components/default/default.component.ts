@@ -31,6 +31,7 @@ export class DefaultComponent implements OnInit {
     this.token=_userService.getToken();
     if(this.identity){
       this.getRecetasSeguidos(this.identity.sub);
+      this.getUser(this.identity.sub);
     }
 
   }
@@ -42,7 +43,6 @@ export class DefaultComponent implements OnInit {
     if(!this.identity || this.identity==null){
       this._router.navigate(['login']);
     }
-    
     /* console.log(this.recetas); */
   }
 
@@ -56,5 +56,18 @@ export class DefaultComponent implements OnInit {
         console.log(<any>error);
       }
     )
+  }
+
+  getUser(id) {
+    this._userService.getUser(id).subscribe(
+      response => {
+        this.user = response.user;
+        console.log("this.user");
+        console.log(this.user);
+      },
+      error => {
+        console.log(<any>error);
+      },
+    );
   }
 }

@@ -16,10 +16,10 @@ export class AppComponent implements OnInit, DoCheck {
   public identity;
   public token;
   public users;
-  public avatar: any='';
+  public avatar: any = '';
   public user: User;
-  public x=10;
-  public y=15;
+  public x = 10;
+  public y = 15;
 
   constructor(
     private _userService: UserService,
@@ -27,67 +27,84 @@ export class AppComponent implements OnInit, DoCheck {
     private _route: ActivatedRoute,
     private _router: Router,
   ) {
+
     this.identity = this._userService.getIdentity();
+    /* this.user = new User(
+      this.identity.sub,
+      'usuario',
+      this.identity.email,
+      '',
+      this.identity.name,
+      this.identity.surname,
+      this.identity.avatar,
+      '',
+      '',
+      ''
+    ); */
     this.token = this._userService.getToken();
+    console.log("this.identity");
+    console.log(this.identity);
     if(this.identity){
       this.getUser(this.identity.sub);
       this.getUsers();
     }
 
-
+    console.log("this.userrrrr");
+    console.log(this.user);
   }
+
   ngOnInit() {
     console.log('app.component cargado');
-
+    
   }
 
   // Comprobar token e identity cuando algo cambie
   ngDoCheck() {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+
   }
 
-  perfilUsuario(id){
+  perfilUsuario(id) {
     this._router.navigate(['/perfil-usuario', id]);
   }
 
-  getUser(id){
-    console.log("a");
+  getUser(id) {
     this._userService.getUser(id).subscribe(
-      response=>{
-        this.user=response.user;
+      response => {
+        this.user = response.user;
         console.log("this.user");
         console.log(this.user);
       },
-      error=>{
+      error => {
         console.log(<any>error);
       },
     );
   }
-  getUsers(){
+  getUsers() {
     this._userService.getUsers(this.token).subscribe(
-      response=>{
-        this.users=response.users;
-        console.log("this.users");
-        console.log(this.users);
+      response => {
+        this.users = response.users;
+        /* console.log("this.users");
+        console.log(this.users); */
       },
-      error=>{
+      error => {
         console.log(<any>error);
       },
     );
   }
 
-  pdfUsers(){
-    this.y=15;
-    var doc=new jsPDF('l','mm',[297,210]);
+  pdfUsers() {
+    this.y = 15;
+    var doc = new jsPDF('l', 'mm', [297, 210]);
     doc.text("LISTADO DE USUARIOS DE FOOD-4U", 71, 7);
     this.users.forEach(element => {
       doc.text(
-        element.id +' - '+
-        element.name +' - '+
-        element.surname +' - '+
-        element.email +' - '+
-        element.created_at +' - ',this.x,this.y, true
+        element.id + ' - ' +
+        element.name + ' - ' +
+        element.surname + ' - ' +
+        element.email + ' - ' +
+        element.created_at + ' - ', this.x, this.y, true
       );
       this.y += 10;
     });

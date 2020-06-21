@@ -46,10 +46,14 @@ let LoginComponent = class LoginComponent {
         this._route.params.subscribe((params) => {
             let logout = +params['sure'];
             if (logout == 1) {
+
                 localStorage.removeItem('identity');
                 localStorage.removeItem('token');
                 this.identity = null;
                 this.token = null;
+                console.log("usere");
+                console.log(this.user);
+                this.user=null;
                 // Redirección
                 this._router.navigate(['home']);
             }

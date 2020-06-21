@@ -22,14 +22,16 @@ export class LoginComponent implements OnInit {
     private _userService: UserService
   ) {
     this.titulo = 'Login';
-    this.user = new User(null, 'usuario', '', '', '', '', '', '', '','');
+    this.user = new User(null, '', '', '', '', '', '', '', '','');
     this.identity = this._userService.getIdentity();
   }
 
   ngOnInit() {
     console.log('login.component cargado correctamente!');
     console.log(this.identity);
+    console.log(this.user);
     this.logout();
+
    /*  if(this.identity==null){
       this.logout();
     }else{
@@ -58,7 +60,9 @@ export class LoginComponent implements OnInit {
               this.identity = response;
               localStorage.setItem('identity', JSON.stringify(this.identity));
               // Objeto usuario identificado
+              window.location.href = "http://localhost:4200/inicio"
               this._router.navigate(['inicio']);
+
             },
             (error) => {
               console.log(<any>error);
@@ -83,6 +87,7 @@ export class LoginComponent implements OnInit {
         this.identity = null;
         this.token = null;
         this._router.navigate(['/login']);
+
       }
     });
   }
