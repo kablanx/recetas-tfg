@@ -21,7 +21,7 @@
     "@angular/router": "~9.1.1",
     "angular-file-uploader": "^5.0.2",
     "bootstrap": "4.4.1",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jspdf": "^1.4.1",
     "ngx-pagination": "^5.0.0",
     "rxjs": "~6.5.4",
