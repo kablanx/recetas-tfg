@@ -42,6 +42,7 @@ export class DefaultComponent implements OnInit {
     if(!this.identity || this.identity==null){
       this._router.navigate(['login']);
     }
+    
     /* console.log(this.recetas); */
   }
 

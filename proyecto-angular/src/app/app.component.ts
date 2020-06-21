@@ -38,6 +38,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
   ngOnInit() {
     console.log('app.component cargado');
+
   }
 
   // Comprobar token e identity cuando algo cambie
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   getUser(id){
+    console.log("a");
     this._userService.getUser(id).subscribe(
       response=>{
         this.user=response.user;
@@ -66,7 +68,7 @@ export class AppComponent implements OnInit, DoCheck {
     this._userService.getUsers(this.token).subscribe(
       response=>{
         this.users=response.users;
-        console.log("this.user");
+        console.log("this.users");
         console.log(this.users);
       },
       error=>{
@@ -76,6 +78,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   pdfUsers(){
+    this.y=15;
     var doc=new jsPDF('l','mm',[297,210]);
     doc.text("LISTADO DE USUARIOS DE FOOD-4U", 71, 7);
     this.users.forEach(element => {
