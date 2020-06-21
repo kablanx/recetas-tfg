@@ -1,0 +1,28 @@
+var annotated_dup =
+[
+    [ "App", "namespace_app.html", "namespace_app" ],
+    [ "imp", "namespaceimp.html", "namespaceimp" ],
+    [ "Nan", "namespace_nan.html", "namespace_nan" ],
+    [ "Tests", "namespace_tests.html", "namespace_tests" ],
+    [ "CopyablePersistentTraits", "struct_copyable_persistent_traits.html", "struct_copyable_persistent_traits" ],
+    [ "CreateFailedJobsTable", "class_create_failed_jobs_table.html", "class_create_failed_jobs_table" ],
+    [ "CreateUsersTable", "class_create_users_table.html", "class_create_users_table" ],
+    [ "DatabaseSeeder", "class_database_seeder.html", "class_database_seeder" ],
+    [ "FunctionCallbackInfo", "class_function_callback_info.html", "class_function_callback_info" ],
+    [ "Global", "class_global.html", "class_global" ],
+    [ "JSON", "class_j_s_o_n.html", "class_j_s_o_n" ],
+    [ "MaybeLocal", "class_maybe_local.html", "class_maybe_local" ],
+    [ "NonCopyablePersistentTraits", "class_non_copyable_persistent_traits.html", "class_non_copyable_persistent_traits" ],
+    [ "ObjectWrap", "class_object_wrap.html", "class_object_wrap" ],
+    [ "Persistent", "class_persistent.html", "class_persistent" ],
+    [ "PersistentBase", "class_persistent_base.html", "class_persistent_base" ],
+    [ "PropertyCallbackInfo", "class_property_callback_info.html", "class_property_callback_info" ],
+    [ "PropertyCallbackInfo< v8::Array >", "class_property_callback_info_3_01v8_1_1_array_01_4.html", "class_property_callback_info_3_01v8_1_1_array_01_4" ],
+    [ "PropertyCallbackInfo< v8::Boolean >", "class_property_callback_info_3_01v8_1_1_boolean_01_4.html", "class_property_callback_info_3_01v8_1_1_boolean_01_4" ],
+    [ "PropertyCallbackInfo< v8::Integer >", "class_property_callback_info_3_01v8_1_1_integer_01_4.html", "class_property_callback_info_3_01v8_1_1_integer_01_4" ],
+    [ "PropertyCallbackInfoBase", "class_property_callback_info_base.html", "class_property_callback_info_base" ],
+    [ "ReturnValue", "class_return_value.html", "class_return_value" ],
+    [ "strong", "classstrong.html", null ],
+    [ "TypedArrayContents", "class_typed_array_contents.html", "class_typed_array_contents" ],
+    [ "WeakCallbackInfo", "class_weak_callback_info.html", "class_weak_callback_info" ]
+];

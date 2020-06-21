@@ -1,0 +1,26 @@
+var class_persistent_base =
+[
+    [ "PersistentBase", "class_persistent_base.html#aa7b1d10a1a6bb4df964164910514f38a", null ],
+    [ "ClearWeak", "class_persistent_base.html#a7fbf1c0bfd2cad0da59b4c13bd437353", null ],
+    [ "Empty", "class_persistent_base.html#ae9d0f84a5bb15c855fd8082b03bb794a", null ],
+    [ "IsEmpty", "class_persistent_base.html#a8e12342fc420701fbffd97025421575a", null ],
+    [ "IsIndependent", "class_persistent_base.html#a0d9f19089b088d19cf6c1951900942e9", null ],
+    [ "IsNearDeath", "class_persistent_base.html#a753b41a27762e1c4f2a3417376f2a59f", null ],
+    [ "IsWeak", "class_persistent_base.html#a1630d7dfa1021586927911982dc04ea6", null ],
+    [ "MarkIndependent", "class_persistent_base.html#a42b43d78514ac4b011af584f3058da98", null ],
+    [ "operator!=", "class_persistent_base.html#acc5ba15198bc6b58004e88d90d9d72f0", null ],
+    [ "operator!=", "class_persistent_base.html#a823ca751ba6ed7675fa5208e0bbb3017", null ],
+    [ "operator==", "class_persistent_base.html#a791ab4a463c8a75c16afab666c661764", null ],
+    [ "operator==", "class_persistent_base.html#a2ca6c8b8bb3e6a089b8d9c09c241002b", null ],
+    [ "Reset", "class_persistent_base.html#a372de693ad40b3f42839c8ec6ac845f4", null ],
+    [ "Reset", "class_persistent_base.html#a80a7c87b0ac1b6cd13e3a927c9a49671", null ],
+    [ "Reset", "class_persistent_base.html#ab687c73e5541352bc037a37514488b4b", null ],
+    [ "SetWeak", "class_persistent_base.html#a5dca14719b97f71a3de8813373e27d8b", null ],
+    [ "Global", "class_persistent_base.html#adc49d0fc7441cf7e3b5f039334e44243", null ],
+    [ "New", "class_persistent_base.html#a2843d3677825f486a341bf8ef4f91771", null ],
+    [ "New", "class_persistent_base.html#aeffcba0d3279a5385f16e575a0eac558", null ],
+    [ "New", "class_persistent_base.html#a871dabd1b6ac9eb7dcffa832c3310aec", null ],
+    [ "ObjectWrap", "class_persistent_base.html#aa768a749e991f292d109b060d1c74f75", null ],
+    [ "Persistent", "class_persistent_base.html#ad845ec8872174be0a9ca9a3dd1898d30", null ],
+    [ "ReturnValue", "class_persistent_base.html#a53f604d3d6f2dc0647df33c9979f116a", null ]
+];
